@@ -10,6 +10,12 @@ import java.util.Scanner;
  * 최종수정일: 2019.06.13
  */
 
+class St<S, A> {
+	private S student;
+	// private A
+
+}
+
 class Student {
 	int sno;
 	String name;
@@ -53,7 +59,7 @@ public class CollectionExample {
 		boolean err = false;
 
 		while (true) { // 프로그램시작
-			System.out.println("1)저장   2)조회[학생번호]   3)삭제[학생번호]");
+			System.out.println("1)저장   2)조회[학생번호]   3)삭제[학생번호]  4)종료");
 			menu = sc.nextInt();
 
 			if (menu == 1) { // 메뉴 1
@@ -66,7 +72,7 @@ public class CollectionExample {
 						err = true; // 학번 중복 x
 					}
 				}
-				if (!err) { //중복아닐때
+				if (!err) { // 중복아닐때
 					System.out.println("학생 이름: ");
 					name = sc.next();
 					System.out.println("학생 전공: ");
@@ -75,8 +81,8 @@ public class CollectionExample {
 					s.setStudent(sno, name, major);
 					list.add(s);
 					System.out.println("저장됨");
-				}
-				else continue;		//중복이면 다시 처음으로
+				} else
+					continue; // 중복이면 다시 처음으로
 			}
 
 			else if (menu == 2) { // 메뉴 2 조회
@@ -107,19 +113,41 @@ public class CollectionExample {
 				sno = sc.nextInt();
 
 				// getSearch(); // 입력한 학번과 저장되있는 학번 비교
-				for (Student s : list) {
-					if (s.getsno() == sno) {
-						System.out.println(s.toString());
-						list.remove(s);
-						search = true;
-						System.out.println("삭제성공");
+				CollectionExample col = new CollectionExample();
+				col.rmStudent(list, sno);
 
-					} else
-						search = false;
-				}
+//				for (Student s : list) {
+//					if (s.getsno() == sno) {
+//						System.out.println(s.toString());
+//						list.remove(s);
+//						search = true;
+//						System.out.println("삭제성공");
+//
+//					} else
+//						search = false;
+//				}
 				if (!search)
 					System.out.println("없는학생");
 			}
+
+			else
+				System.out.println("--종료--");
+			break;
+		}
+
+	}
+
+	public void rmStudent(List<Student> list, int sno) {
+		boolean search;
+		for (Student s : list) {
+			if (s.getsno() == sno) {
+				System.out.println(s.toString());
+				list.remove(s);
+				search = true;
+				System.out.println("삭제성공");
+
+			} else
+				search = false;
 		}
 	}
 }
