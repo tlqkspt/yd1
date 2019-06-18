@@ -1,6 +1,7 @@
 package com.employees.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.employees.EmpService;
 import com.employees.Employee;
@@ -35,6 +36,12 @@ public class NewEmpServiceImpl implements EmpService {
 	public void deleteEmp(int empId) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Map<String, String> memberInfo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

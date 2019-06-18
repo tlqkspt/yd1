@@ -42,15 +42,15 @@ public class HashMapExample {
 		map.put(new Person("111","hong1"), "hello");
 		map.put(new Person("111","hong1"), "nice");
 		map.put(new Person("330","hong3"), "good1");
-		map.put(new Person("333","hong3"), "good2");
-		map.put(new Person("331","hong3"), "good3");
-		map.put(new Person("332","hong3"), "good4");
-		map.put(new Person("334","hong3"), "good5");
-		map.put(new Person("335","hong3"), "good6");
-		map.put(new Person("336","hong3"), "good7");
-		map.put(new Person("337","hong3"), "good8");
-		map.put(new Person("338","hong3"), "good9");
-		map.put(new Person("339","hong3"), "good0");
+//		map.put(new Person("333","hong3"), "good2");
+//		map.put(new Person("331","hong3"), "good3");
+//		map.put(new Person("332","hong3"), "good4");
+//		map.put(new Person("334","hong3"), "good5");
+//		map.put(new Person("335","hong3"), "good6");
+//		map.put(new Person("336","hong3"), "good7");
+//		map.put(new Person("337","hong3"), "good8");
+//		map.put(new Person("338","hong3"), "good9");
+//		map.put(new Person("339","hong3"), "good0");
 		
 		//결과값 hello  good
 		Set<Person> set = map.keySet();

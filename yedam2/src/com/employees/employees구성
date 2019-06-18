@@ -4,6 +4,9 @@ employees
  	-control : 화면컨트롤..
  	 	2)EmpProc
  	 	3)EmpMain
-    -impl
-    	4)EmpDAO
-    	5)EmpServiceImpl
+    -impl	: interface 구현할 클래스
+    	4)EmpServiceImpl => NewEmplServiceImpl
+    	5)EmpDAO
+    -Employee, 인터페이스
+    	6)
+    	7)
