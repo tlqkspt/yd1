@@ -22,15 +22,16 @@ public class EmpDAO {
 		public void updateEmp(Employee emp) {
 			conn = DAO.getConnet();
 			String sql = "update emp_temp set salary =?"+
-					"where employee_id="+ emp.getEmployeeId();
+					"where employee_id=?";
 
-			System.out.println(emp.getEmployeeId()+","+emp.getSalary());
+			//System.out.println(emp.getEmployeeId()+","+emp.getSalary());
 			
 			try {
 				pstmt = conn.prepareStatement(sql);	
-			
 				pstmt.setInt(1, emp.getSalary());
+				pstmt.setInt(2, emp.getEmployeeId());
 
+				int r = pstmt.executeUpdate(); //시이이이발 업데이트커밋
 			} catch (SQLException e) {				
 				e.printStackTrace();
 			}finally {
