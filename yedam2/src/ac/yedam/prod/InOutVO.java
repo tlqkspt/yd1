@@ -41,7 +41,10 @@ public class InOutVO {
 	}
 	
 	public void showInfo() {
-		System.out.printf("제품코드: %-5S | 제품수량: %-5d | 날짜: %-5S\n",productCode,qty,issueDate);
+		if(qty>0)
+			System.out.printf("제품코드: %-5S | 제품수량: +%-5d | 날짜: %-5S\n",productCode,qty,issueDate);
+		else
+			System.out.printf("제품코드: %-5S | 제품수량: %-5d | 날짜: %-5S\n",productCode,qty,issueDate);
 	}
 	
 }
