@@ -111,5 +111,4 @@ public class InOutDAO {
 		}
 		return list;
 	}
-
 }

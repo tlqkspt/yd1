@@ -56,8 +56,8 @@ public class ProdProc {
 						outService(); // 출고처리
 					else if (menu == 3)
 						getQtyList(); // 전체재고
-					else if (menu ==4 ) 
-						getInOut();		//입출고기록
+					else if (menu == 4)
+						getInOut(); // 입출고기록
 					else if (menu == 5)
 						continue;
 
@@ -79,7 +79,7 @@ public class ProdProc {
 				e.getMessage();
 				System.out.println("없는제품입니다 /엔터");
 				sc.nextLine();
-				
+
 			}
 		} // 반복문 종료
 
@@ -158,41 +158,54 @@ public class ProdProc {
 	public void inService() {
 		System.out.println("입고된 물품의 코드: ");
 		String prodCode = sc.nextLine();
-		System.out.println("입고된 물품의 수량: ");
-		int qty = sc.nextInt();
-		sc.nextLine();
-		String today = null; // 오늘날짜
-		InOutVO prodIO = new InOutVO(prodCode, qty, today);
-		inOutService.inService(prodIO);
+
+		// 제품 존재여부 확인
+		ProductVO prod = prodService.getProd(prodCode);
+
+		if (prod != null) {
+			System.out.println("입고된 물품의 수량: ");
+			int qty = sc.nextInt();
+			sc.nextLine();
+			String today = null; // 오늘날짜
+			InOutVO prodIO = new InOutVO(prodCode, qty, today);
+			inOutService.inService(prodIO);
+		} else
+			System.out.println("없는 제품입니다");
 	}
 
 	// 출고처리
 	public void outService() {
-		
+
 		boolean check = false; // 출고량 재고량 비교
-		
+
 		System.out.println("출고된 물품의 코드: ");
 		String prodCode = sc.nextLine();
 
-		System.out.println("출고된 물품의 수량: ");
-		int qty = sc.nextInt();
-		sc.nextLine();
-		qty = qty * -1; // 출고 -로
+		// 제품 존재여부 확인
+		ProductVO prod = prodService.getProd(prodCode);
 
-		List<InOutVO> list = inOutService.getQtyList();
-		for (InOutVO qty1 : list) {
-			if (qty1.getProductCode().equals(prodCode)) {
+		if (prod != null) {
+			System.out.println("출고된 물품의 수량: ");
+			int qty = sc.nextInt();
+			sc.nextLine();
+			qty = qty * -1; // 출고 -로
 
-				check = qty1.getQty() > qty * -1;
+			List<InOutVO> list = inOutService.getQtyList();
+			for (InOutVO qty1 : list) {
+				if (qty1.getProductCode().equals(prodCode)) {
+
+					check = qty1.getQty() > qty * -1;
+				}
 			}
-		}
-		if (check) {
-			String today = null; // 오늘날짜
-			InOutVO prodIO = new InOutVO(prodCode, qty, today);
-			inOutService.inService(prodIO);
-		}else System.out.println("재고량 초과");
+			if (check) {
+				String today = null; // 오늘날짜
+				InOutVO prodIO = new InOutVO(prodCode, qty, today);
+				inOutService.inService(prodIO);
+			} else
+				System.out.println("재고량 초과");
+		} else
+			System.out.println("없는 제품입니다");
 	}
-
 
 	// 전체재고
 	public void getQtyList() {
@@ -201,11 +214,11 @@ public class ProdProc {
 			qty.showInfo();
 		}
 	}
-	
-	//입출고 기록
+
+	// 입출고 기록
 	public void getInOut() {
 		List<InOutVO> list = inOutService.getInOut();
-		for(InOutVO qty : list) {
+		for (InOutVO qty : list) {
 			qty.showInfo();
 		}
 		System.out.println("=========================");
@@ -214,5 +227,5 @@ public class ProdProc {
 			qty.showInfo();
 		}
 	}
-	
+
 }
