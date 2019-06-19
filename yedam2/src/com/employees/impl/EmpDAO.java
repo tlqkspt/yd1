@@ -18,6 +18,23 @@ public class EmpDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	
+	// 한명 삭제
+		public void deleteEmp(int empId) {
+			conn = DAO.getConnet();
+			String sql = "delete from emp_temp where employee_id =" + empId;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+			//	System.out.println("삭제됨"); EmpProc 에 넣을것
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
+	
+	
 	// 한명 연봉 수정
 		public void updateEmp(Employee emp) {
 			conn = DAO.getConnet();
@@ -31,7 +48,7 @@ public class EmpDAO {
 				pstmt.setInt(1, emp.getSalary());
 				pstmt.setInt(2, emp.getEmployeeId());
 
-				int r = pstmt.executeUpdate(); //시이이이발 업데이트커밋
+				int r = pstmt.executeUpdate(); //tttttttttqqqqq 업데이트커밋
 			} catch (SQLException e) {				
 				e.printStackTrace();
 			}finally {

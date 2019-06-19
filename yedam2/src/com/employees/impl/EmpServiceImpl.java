@@ -45,6 +45,7 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public void deleteEmp(int empId) {
 		// TODO Auto-generated method stub
+		dao.deleteEmp(empId);
 		
 	}
 	@Override
