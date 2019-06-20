@@ -57,6 +57,12 @@ public class InOutDAO {
 	}
 	
 	//전체재고
+	/*
+	 *  select v.product_code, p.product_name, v.onhand_qty 
+		from onhand_view v JOIN YD_PRODUCT p
+		ON v.product_code = p.product_code;
+	 */
+	
 	public List<InOutVO> getQtyList() {
 		conn = DAO.getConnet();
 		String sql = "select product_code, sum(txn_qty) onhand_qty "+

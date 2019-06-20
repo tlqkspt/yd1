@@ -174,7 +174,7 @@ public class ProdProc {
 	// 입고처리
 	public void inService() {
 		ProdProc prodp = new ProdProc();
-		prodp.getQtyList();
+		prodp.getProdList();
 		
 		System.out.println("입고된 물품의 코드: ");
 		String prodCode = sc.nextLine();
@@ -211,13 +211,13 @@ public class ProdProc {
 			System.out.println("출고된 물품의 수량: ");
 			int qty = sc.nextInt();
 			sc.nextLine();
-			qty = qty * -1; // 출고 -로
+			qty = -qty; // 출고 -로
 			
 			List<InOutVO> list = inOutService.getQtyList();		//단건 재고 조회 없어서 
 			for (InOutVO qty1 : list) {							//전체재고 불러와서 비교함
 				if (qty1.getProductCode().equals(prodCode)) {
 
-					check = qty1.getQty() >= qty * -1;
+					check = qty1.getQty() >= -qty;
 				}
 			}
 			if (check) {
