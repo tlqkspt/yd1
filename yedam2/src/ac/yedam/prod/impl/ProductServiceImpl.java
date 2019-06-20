@@ -33,4 +33,9 @@ public class ProductServiceImpl implements ProductService {
 			// TODO Auto-generated method stub
 			return dao.getProdList();
 		}
+		@Override
+		public void deletProd(String prodCode) {
+			// TODO Auto-generated method stub
+			dao.deletProd(prodCode);
+		}
 }

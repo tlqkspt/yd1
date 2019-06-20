@@ -1,7 +1,5 @@
 package ac.yedam.prod.control;
 
-import java.security.Provider.Service;
-import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -27,7 +25,7 @@ public class ProdProc {
 
 				if (menu == 1) {
 					System.out.println(" --상품-- ");
-					System.out.println("1)상품조회  2)상품등록  3)상품변경  4)전체상품  5)상위메뉴");
+					System.out.println("1)상품조회  2)상품등록  3)상품변경  4)전체상품 9)상품삭제 5)상위메뉴");
 					menu = sc.nextInt();
 					sc.nextLine();
 					if (menu == 1)
@@ -40,6 +38,8 @@ public class ProdProc {
 						getProdList(); // 전체상품
 					else if (menu == 5)
 						continue;
+					else if (menu == 9)//상품삭제
+						deleteProd();
 
 					else
 						System.out.println("===잘못된 번호===");
@@ -88,6 +88,7 @@ public class ProdProc {
 	public void getProd() { // 상품조회
 		System.out.println("조회할 상품 code 입력: ");
 		String prodCode = sc.nextLine();
+		prodCode = prodCode.toUpperCase();		//대문자
 		ProductVO prod = prodService.getProd(prodCode);
 //		System.out.println("================================");
 		prod.showInfo();
@@ -99,6 +100,8 @@ public class ProdProc {
 		if (prodService.getProd(prodCode) == null) {
 			System.out.println("등록할 상품의 이름: ");
 			String prodName = sc.nextLine();
+			prodCode = prodCode.toUpperCase(); //대문자
+			
 			System.out.println("등록할 상품의 가격: ");
 			int prodPrice = sc.nextInt();
 			ProductVO prod = new ProductVO(prodCode, prodName, prodPrice);
@@ -151,14 +154,31 @@ public class ProdProc {
 			prod.showInfo();
 		}
 	}
+	
+	// 상품삭제
+	public void deleteProd() {
+		System.out.println("삭제할 상품 코드: ");
+		String prodCode = sc.nextLine();
+		ProductVO prod = prodService.getProd(prodCode);
+		prod.showInfo();
+		System.out.println("정말삭제? Y/N");
+		String del = sc.nextLine();
+		if(del.equals("Y") || del.equals("y")) {
+			prodService.deletProd(prodCode);
+			System.out.println("삭제됨");
+		}
+	}
 
 	///////////////
 
 	// 입고처리
 	public void inService() {
+		ProdProc prodp = new ProdProc();
+		prodp.getQtyList();
+		
 		System.out.println("입고된 물품의 코드: ");
 		String prodCode = sc.nextLine();
-
+		prodCode = prodCode.toUpperCase();		//대문자
 		// 제품 존재여부 확인
 		ProductVO prod = prodService.getProd(prodCode);
 
@@ -175,33 +195,36 @@ public class ProdProc {
 
 	// 출고처리
 	public void outService() {
-
+		
 		boolean check = false; // 출고량 재고량 비교
-
+		ProdProc prodp = new ProdProc();
+		prodp.getQtyList();
+		
 		System.out.println("출고된 물품의 코드: ");
 		String prodCode = sc.nextLine();
+		prodCode = prodCode.toUpperCase();		//대문자
+		System.out.println(prodCode);
 
 		// 제품 존재여부 확인
 		ProductVO prod = prodService.getProd(prodCode);
-
 		if (prod != null) {
 			System.out.println("출고된 물품의 수량: ");
 			int qty = sc.nextInt();
 			sc.nextLine();
 			qty = qty * -1; // 출고 -로
-
-			List<InOutVO> list = inOutService.getQtyList();
-			for (InOutVO qty1 : list) {
+			
+			List<InOutVO> list = inOutService.getQtyList();		//단건 재고 조회 없어서 
+			for (InOutVO qty1 : list) {							//전체재고 불러와서 비교함
 				if (qty1.getProductCode().equals(prodCode)) {
 
-					check = qty1.getQty() > qty * -1;
+					check = qty1.getQty() >= qty * -1;
 				}
 			}
 			if (check) {
 				String today = null; // 오늘날짜
 				InOutVO prodIO = new InOutVO(prodCode, qty, today);
 				inOutService.inService(prodIO);
-			} else
+			} else 
 				System.out.println("재고량 초과");
 		} else
 			System.out.println("없는 제품입니다");

@@ -11,4 +11,7 @@ public interface InOutService {
 	public List<InOutVO> getQtyList();
 	//입출고 기록
 	public List<InOutVO> getInOut();
+	
+	//입,출고 기록 삭제
+	//public void delService(InOutVO prodIO);
 }

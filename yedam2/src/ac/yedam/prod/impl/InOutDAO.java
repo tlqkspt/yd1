@@ -10,7 +10,6 @@ import java.util.List;
 import com.employees.common.DAO;
 
 import ac.yedam.prod.InOutVO;
-import ac.yedam.prod.ProductVO;
 
 public class InOutDAO {
 

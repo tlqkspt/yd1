@@ -50,4 +50,7 @@ public class ProductVO {
 		System.out.printf("제품코드: %-5S | 제품이름: %-15s | 가격: %-5d\n",productCode,productName,productPrice);
 	}
 	
+	public void showInfo2() {
+		System.out.printf("제품코드: %-5S",productCode);
+	}
 }

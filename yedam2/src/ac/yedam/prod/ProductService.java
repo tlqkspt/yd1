@@ -12,5 +12,7 @@ public interface ProductService {
 	//전체상품
 	public List<ProductVO> getProdList();
 	
+	//상품삭제
+	public void deletProd(String prodCode);
 	
 }

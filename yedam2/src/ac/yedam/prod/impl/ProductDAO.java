@@ -110,4 +110,19 @@ public class ProductDAO {
 		}
 		return list;
 	}
+	
+	//상품 삭제
+	public void deletProd(String prodCode) {
+		conn = DAO.getConnet();
+		String sql = "delete from yd_product "
+					  +"where product_code =?";	// 숫자로만 이뤄진 코드 삭제???
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, prodCode);
+			rs = pstmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
