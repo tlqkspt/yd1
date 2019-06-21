@@ -7,6 +7,9 @@ public class DriverLicenseInfo {
 	private String dType;
 	private String dDate;
 	private String dExDate;
+	public DriverLicenseInfo[] dLList= new DriverLicenseInfo[9];
+	
+	         
 	
 	public DriverLicenseInfo() {	}
 	
