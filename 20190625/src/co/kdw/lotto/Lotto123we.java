@@ -17,10 +17,9 @@ public class Lotto123we {
 			numMake.run();
 			count++;
 			System.out.println(count);
-			System.out.println(numMake.getNum().toString());
-			System.out.println(select);
+//			System.out.println(Arrays.toString(numMake.getNum()));
 			
-		} while (!(numMake.getNum().equals(select)));
+		} while (!(Arrays.equals(select, numMake.getNum())));
 		System.out.println(count);
 	}
 	

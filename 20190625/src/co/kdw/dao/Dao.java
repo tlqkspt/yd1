@@ -24,7 +24,7 @@ public class Dao {
 		init();
 		try {
 			Class.forName(driver);
-			conn = DriverManager.getConnection(url, user, pw);	//db져있으면 접속 x
+			conn = DriverManager.getConnection(url, user, pw);	//db꺼져있으면 접속 x
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
