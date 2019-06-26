@@ -12,7 +12,6 @@ public class MainApp {
 		Lotto123we win = new Lotto123we();
 		
 		win.check();
-		
 	}
 }
 

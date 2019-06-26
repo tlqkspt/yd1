@@ -103,6 +103,7 @@ public class Dao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+//			System.out.println("select 오류");	//실제배포시 이런식
 		}
 		
 		return list;

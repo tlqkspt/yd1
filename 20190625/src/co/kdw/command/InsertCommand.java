@@ -38,8 +38,8 @@ public class InsertCommand {
 		if(dao.insert(dto) != 0 ) {
 			System.out.println("정상입력");
 			list = dao.select();
-			for(MemberDto l : list) {
-				l.toString();
+			for(MemberDto l : list) {	///////////중요  for each 문 arraylist
+				l.toString();			////////////
 			}
 		}else {
 			System.out.println("입력실패!!!!!");
@@ -47,7 +47,7 @@ public class InsertCommand {
 		dao.close();
 	}
 	
-	public void run() {
+	public void run() {		//얘밖에 안보임   //다른사람이 쓸때 매서드 순서 몰라도됨
 		process();
 	}
 }

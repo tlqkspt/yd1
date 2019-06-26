@@ -1,6 +1,6 @@
 package co.kdw.dto;
 
-public class MemberDto {
+public class MemberDto {	//table 과 1:1 매핑  생성자+getter,setter 로구성
 	private String id;		//테이블 가지고있는 데이터 타입만맞으면됨
 	private String name;
 	private String tel;
