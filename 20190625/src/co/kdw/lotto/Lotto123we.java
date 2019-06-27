@@ -16,7 +16,7 @@ public class Lotto123we {
 		int num = 0;
 		for (int i = 0; i < 6; i++) {
 			num = makeNum[i];
-			counter[num - 1]++;
+			counter[num-1]++;
 		}
 	}
 //	public void hi() {
@@ -32,7 +32,7 @@ public class Lotto123we {
 		do {
 			numMake.run();
 			count++;
-			System.out.println(count);
+			//System.out.println(count);
 			lottoNumCount(numMake.getNum());
 //			System.out.println(Arrays.toString(numMake.getNum()));
 
@@ -40,16 +40,29 @@ public class Lotto123we {
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("횟수: " + count);
 		System.out.println("돈:" + count * 1000 + "원");
-		System.out.println(Arrays.toString(counter));
-		counter.toString();
+		//System.out.println(Arrays.toString(counter));
+		
+		//arrString(counter);
+		
+		for (int i = 1; i <= 45; i++) {
+			
+			double per = (Math.round((double)counter[i-1]/count*100*100)/100.0);
+		
+			System.out.print(i + "번 :" + counter[i-1]+"  "+ per +"%" +"   " ); 
+			if(i%10 ==0)
+				System.out.println();
+		}
+		System.out.println();
 
 	}
 
-	@Override
-	public String toString() {
+	public String arrString(int[] lotto) {
 		for (int i = 0; i < 45; i++) {
-			System.out.println(i + 1 + "번 :" + counter[i]);
+			System.out.print(i + 1 + "번 :" + lotto[i]+ "  ");
+			if(i%10 ==0)
+				System.out.println();
 		}
+		System.out.println();
 		return null;
 	}
 }
