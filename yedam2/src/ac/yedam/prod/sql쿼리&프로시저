@@ -1,0 +1,96 @@
+select * from yd_prod_txn;
+
+select * from yd_product;
+
+select * from onhand_view;
+
+select product_code, sum(txn_qty) onhand_qty
+					from yd_prod_txn
+					group by product_code;
+          
+create table yedam_prod_onhand(
+product_code varchar2(10),
+onhand_qty number);
+
+select * from yedam_prod_onhand;
+
+create table puechase_info(
+  purchase_no varchar2(10),
+  product_code varchar2(10),
+  txn_qty number);
+
+alter table puechase_info rename to purchase_info;
+
+commit;
+select * from purchase_info;
+select MAX(purchase_no) from purchase_info;  -- 그컬럼의 최대값을 가져와서 다음번호로쓴다 빈값이면 null 
+
+insert into purchase_info values(1,'3',3);
+
+desc purchase_info;
+
+create sequence qtylist_no
+  start with 1
+  increment by 1;
+
+
+
+--------------------------------------------------------------------------
+create or replace PROCEDURE create_receipt_proc(p_prod_code VARCHAR
+                                                                ,p_txn_qty   NUMBER) IS
+    v_cnt NUMBER;
+BEGIN
+    --입고테이블에 입고정보생성.
+    INSERT INTO yd_prod_txn
+        (product_code
+        ,txn_qty
+        ,receipt_issue_date)
+    VALUES
+        (p_prod_code
+        ,p_txn_qty
+        ,SYSDATE);
+    --재고테이블에 해당 품목의 정보가 있는지 확인해서 
+    --해당품목코드가 있으면 update 구문을 실행하고
+    --없으면 insert 구문을 실행하도록 한다.
+    SELECT COUNT(*)
+    INTO   v_cnt
+    FROM   yedam_prod_onhand
+    WHERE  product_code = p_prod_code;
+
+    IF v_cnt = 0 THEN
+    
+        --첫 재고 생성일 경우에는
+        INSERT INTO yedam_prod_onhand
+            (product_code
+            ,onhand_qty)
+        VALUES
+            (p_prod_code
+            ,p_txn_qty);
+
+    ELSE
+        UPDATE yedam_prod_onhand
+        SET        onhand_qty = onhand_qty + p_txn_qty
+        WHERE  product_code = p_prod_code;
+    END IF;
+
+END create_receipt_proc;
+----------------------------------------------------------------------
+반복해서 정보넣음
+create or replace PROCEDURE receipt_purchase_no(p_purchase_no VARCHAR2) IS
+
+    CURSOR s_purchase IS
+        SELECT product_code
+              ,txn_qty
+        FROM   purchase_info
+        WHERE  purchase_no = p_purchase_no;
+
+BEGIN
+    FOR r IN s_purchase
+    LOOP
+        create_receipt_proc(p_prod_code => r.product_code
+                           ,p_txn_qty   => r.txn_qty);
+    
+    END LOOP;
+
+END receipt_purchase_no;
+-------------------------------------------------------------
