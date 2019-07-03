@@ -33,5 +33,19 @@ public class InOutServiceImpl implements InOutService {
 		// TODO Auto-generated method stub
 		return dao.getInOut();
 	}
+	
+	////추가
+	@Override
+	public void qtyBuyList(List<InOutVO> prodIO) {
+		// TODO Auto-generated method stub
+		dao.qtyBuyList(prodIO);
+	}
+	@Override
+	public void qtySellList(List<InOutVO> prodIO) {
+		// TODO Auto-generated method stub
+		dao.qtySellList(prodIO);
+	}
+	
+	
 
 }

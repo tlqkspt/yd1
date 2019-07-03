@@ -12,6 +12,12 @@ public interface InOutService {
 	//입출고 기록
 	public List<InOutVO> getInOut();
 	
+	//입고 리스트생성
+	public void qtyBuyList(List<InOutVO> prodIO);
+	
+	//출고리스트생성
+	public void qtySellList(List<InOutVO> prodIO);
+	
 	//입,출고 기록 삭제
 	//public void delService(InOutVO prodIO);
 }
