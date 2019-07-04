@@ -72,6 +72,7 @@ public class InOutDAO {
 //					"from yd_prod_txn "+
 //					"group by product_code";
 //		InOutVO qty = null;
+		
 		// 수정코드
 		String sql = "select * from yedam_prod_onhand";
 		InOutVO qty;
@@ -122,21 +123,38 @@ public class InOutDAO {
 		}
 		return list;
 	}
-
-	// 출고품목리스트처리
-	public void qtySellList(List<InOutVO> sellList) {
+	
+	// 입출고 목록 적용
+	public void setInOutList(String num) {
 		conn = DAO.getConnet();
+		int n;
+		String sql = "{call receipt_purchase_no(?)}"; //receipt_purchase_no(p_purchase_no VARCHAR2)
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			n = pstmt.executeUpdate();
+			System.out.println("뭐지 "+n);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	// 입고,출고품목리스트
+	public int qtySellList(List<InOutVO> sellList) {
+		conn = DAO.getConnet();
+		int n = 0;
+
 		String sql1 = "select MAX(purchase_no) from purchase_info";
-		int max;
-		String str = null;
+		String strMax = null;
 		try {
 			pstmt = conn.prepareStatement(sql1);
 			rs = pstmt.executeQuery();
 
 //			max = rs.getInt("purchase_no");
-			while (rs.next()) {
-				str = rs.getString("MAX(purchase_no)");
-				System.out.println(str);
+			while (rs.next()) { // 현재 테이블 purchase_no 최대값 저장
+				strMax = rs.getString("MAX(purchase_no)");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -148,14 +166,14 @@ public class InOutDAO {
 		try {
 			pstmt = conn.prepareStatement(sql2);
 			for (InOutVO sell : sellList) {
-				if (str == null)
+				if (strMax == null) // purchase_no null이면 1로지정 아니면 +1해서 다음번호로쓴다
 					pstmt.setInt(1, 1);
 				else
-					pstmt.setInt(1, Integer.parseInt(str)+1);	//str값은 위에서 고정했음
-				
+					pstmt.setInt(1, Integer.parseInt(strMax) + 1); // str값은 위에서 고정했음
+
 				pstmt.setString(2, sell.getProductCode());
 				pstmt.setInt(3, sell.getQty());
-				pstmt.executeUpdate();
+				n = pstmt.executeUpdate();
 			}
 
 		} catch (SQLException e) {
@@ -164,11 +182,51 @@ public class InOutDAO {
 		} finally {
 			DAO.close(conn);
 		}
+		return n;
 
 	}
 
-	// 입고품목
-	public void qtyBuyList(List<InOutVO> prodIO) {
-
-	}
+//	// 입고품목
+//	public void qtyBuyList(List<InOutVO> prodIO) {
+//		conn = DAO.getConnet();
+//		String sql1 = "select MAX(purchase_no) from purchase_info";
+//		int max;
+//		String str = null;
+//		try {
+//			pstmt = conn.prepareStatement(sql1);
+//			rs = pstmt.executeQuery();
+//
+////			max = rs.getInt("purchase_no");
+//			while (rs.next()) {
+//				str = rs.getString("MAX(purchase_no)");
+//				System.out.println(str);
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		String sql2 = "insert into purchase_info values( ?, ?, ?)";
+//
+//		try {
+//			pstmt = conn.prepareStatement(sql2);
+//			for (InOutVO sell : sellList) {
+//				if (str == null)
+//					pstmt.setInt(1, 1);
+//				else
+//					pstmt.setInt(1, Integer.parseInt(str)+1);	//str값은 위에서 고정했음
+//				
+//				pstmt.setString(2, sell.getProductCode());
+//				pstmt.setInt(3, sell.getQty());
+//				pstmt.executeUpdate();
+//			}
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			DAO.close(conn);
+//		}
+//
+//	}
 }

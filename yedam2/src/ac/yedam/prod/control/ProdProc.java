@@ -21,7 +21,7 @@ public class ProdProc {
 		while (true) {
 			try {
 				System.out.println("======메인메뉴=====");
-				System.out.println("1)상품  2)재고  3)구매,판매정보 생성  4)종료");
+				System.out.println("1)상품  2)재고  3)구매,판매목록 생성  4)종료");
 
 				menu = sc.nextInt();
 
@@ -49,7 +49,7 @@ public class ProdProc {
 
 				else if (menu == 2) {
 					System.out.println("==재고==");
-					System.out.println("1)입고처리 2)출고처리 3)전체재고 4)입출고 기록  5)상위메뉴");
+					System.out.println("1)입고처리 2)출고처리 3)전체재고 4)입출고 기록  5)입,출고 목록 실행  6)상위메뉴");
 					menu = sc.nextInt();
 					sc.nextLine();
 					if (menu == 1)
@@ -61,6 +61,8 @@ public class ProdProc {
 					else if (menu == 4)
 						getInOut(); // 입출고기록
 					else if (menu == 5)
+						setInOutList();
+					else if (menu ==6)
 						continue;
 
 					else
@@ -69,16 +71,16 @@ public class ProdProc {
 
 				// 구매 판매 정보 생성창
 				else if (menu == 3) {
-					System.out.println("==구매,판매정보 생성===");
-					System.out.println("1)구매정보생성  2)판매정보생성 3)상위메뉴");
+					System.out.println("==구매,판매목록 생성===");
+					System.out.println("1)구매목록생성  2)판매목록생성 3)상위메뉴");
 					menu = sc.nextInt();
 					sc.nextLine();
 					switch (menu) {
 					case 1:
-						qtyBuyList();
+						qtySellList(1); //1 구매  2 판매
 						break;
 					case 2:
-						qtySellList();
+						qtySellList(2);
 						break;
 					case 3:
 						break;
@@ -105,33 +107,84 @@ public class ProdProc {
 
 	}
 
-	private void qtySellList() {
+	
+	//입 출고 리스트 실행
+	private void setInOutList() {
 		// TODO Auto-generated method stub
+		String num;
 		
-		List<InOutVO> sellList = new ArrayList<InOutVO>();		//반복문안에있어서 계속초기화됨
+		System.out.println("적용할 입고,출고 리스트 번호");
+		num = sc.nextLine();
+		inOutService.setInOutList(num);
+		
+	}
+
+	private void qtySellList(int choice) {
+		// TODO Auto-generated method stub
+
+		List<InOutVO> sellList = new ArrayList<InOutVO>(); // 반복문안에있어서 계속초기화됨
+		String prodCode = null;
+		int qty = 0;
 		
 		while (true) {
-			System.out.println("판매할 제품코드");
-			String prodCode = sc.nextLine();
-			System.out.println("판매할 수량");
-			int qty = sc.nextInt();
+			if (choice == 1) {
+				System.out.println("구매할 제품코드");
+				prodCode = sc.nextLine();
+				prodCode = prodCode.toUpperCase();
+				System.out.println("구매할 수량");
+				qty = sc.nextInt();
+			
+			} else if (choice == 2) {
+				System.out.println("판매할 제품코드");
+				prodCode = sc.nextLine();
+				prodCode = prodCode.toUpperCase();
+				System.out.println("판매할 수량");
+				qty = sc.nextInt() * -1; // 판매라서 재고 - 붙여줌
+			}
 			sc.nextLine();
 			InOutVO inOutVO = new InOutVO(prodCode, qty, null);
 
 			sellList.add(inOutVO);
-			
+
 			System.out.println("계속 입력 하시겠습니까?  Y/N");
 			String YN = sc.nextLine();
-			
-			if(YN.equals("n") || YN.equals("N") ) {
+
+			if (YN.equals("n") || YN.equals("N")) {
 				break;
 			}
 		}
-		inOutService.qtySellList(sellList);
+		if (inOutService.qtySellList(sellList) != 0) {
+			for(InOutVO sell : sellList) {
+				sell.showInfo();
+			}
+			System.out.println("정상입력");
+		}else {
+			System.out.println("입력실패!!!");
+		}
 	}
 
 	private void qtyBuyList() {
 		// TODO Auto-generated method stub
+//		List<InOutVO> buyList = new ArrayList<InOutVO>(); // 반복문안에있어서 계속초기화됨
+//
+//		while (true) {
+//			System.out.println("판매할 제품코드");
+//			String prodCode = sc.nextLine();
+//			System.out.println("판매할 수량");
+//			int qty = sc.nextInt();
+//			sc.nextLine();
+//			InOutVO inOutVO = new InOutVO(prodCode, qty, null);
+//
+//			buyList.add(inOutVO);
+//
+//			System.out.println("계속 입력 하시겠습니까?  Y/N");
+//			String YN = sc.nextLine();
+//
+//			if (YN.equals("n") || YN.equals("N")) {
+//				break;
+//			}
+//		}
+//		inOutService.qtySellList(buyList);
 
 	}
 

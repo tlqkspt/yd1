@@ -9,11 +9,9 @@ import test93.server.ClientManagerThread;
 
 public class TextLog {
 	String text;
-	String fileName = "D:\\chatLogTest+";
+	String fileName = "D:\\chatLog\\chatLogTest";
 	//String logDateTitle = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	String logDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-	
-
 	
 	ClientManagerThread CMT;
 	
@@ -24,7 +22,7 @@ public class TextLog {
 	
 	public void save(String text) {
 		
-		text = text+"     "+logDate+"\r\n";
+		text ="["+logDate+"]"+"  "+text+"\r\n";
 		
 		try {
 			// 버퍼 라이터 와 파일라이터 조합해서 사용한다(속도up)
@@ -43,7 +41,7 @@ public class TextLog {
 	
 public void save(String text, String m_id) {
 		
-		text = m_id+"> "+text+"     "+logDate+"\r\n";
+		text ="["+logDate+"]"+"  "+" <"+m_id+"> "+text+"\r\n";
 		
 		try {
 			// 버퍼 라이터 와 파일라이터 조합해서 사용한다(속도up)

@@ -37,7 +37,7 @@ public class ClientManagerThread extends Thread{
 				
 				if(text == null)
 				{
-					String outMessage = m_ID + " 이(가) 나갔습니다.";		//로그 수정
+					String outMessage = "<"+m_ID+">" + " 이(가) 나갔습니다.";		//로그 수정
 					logtest.save(outMessage);	//사용자 퇴장 로그 저장
 					System.out.println(outMessage);	//로그 수정
 					for(int i = 0; i < ChatServer.m_OutputList.size(); ++i)
@@ -53,13 +53,13 @@ public class ClientManagerThread extends Thread{
 				{
 					m_ID = split[1];
 					
-					String inMessage = m_ID + " 이(가) 입장하였습니다.";		//로그테스트 수정
+					String inMessage = "<"+m_ID+">" + " 이(가) 입장하였습니다.";		//로그테스트 수정
 					logtest.save(inMessage);							//로그테스트수정
 		
-					System.out.println(m_ID + " 이(가) 입장하였습니다.");
+					System.out.println("<"+m_ID+">" + " 이(가) 입장하였습니다.");
 					for(int i = 0; i < ChatServer.m_OutputList.size(); ++i)
 					{
-						ChatServer.m_OutputList.get(i).println(m_ID + " 이(가) 입장하였습니다.");
+						ChatServer.m_OutputList.get(i).println("<"+m_ID+">" + " 이(가) 입장하였습니다.");
 						ChatServer.m_OutputList.get(i).flush();
 					}
 					continue;
