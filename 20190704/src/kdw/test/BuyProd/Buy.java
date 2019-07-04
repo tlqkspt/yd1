@@ -1,10 +1,34 @@
 package kdw.test.BuyProd;
 
-interface Buy {
+public class Buy {
+	int orderNo;
+	int sumPrice;
+	
+	public Buy(int orderNo, int sumPrice) {
+		// TODO Auto-generated constructor stub
+		this.orderNo = orderNo;
+		this.sumPrice = sumPrice;
+	}
 
-	public void addProd();	// 장바구니추가
-	public void cancleProd();	//물건취소
-	public void buyProd(); //  장바구니 결제
+	public Buy() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getOrderNo() {
+		return orderNo;
+	}
+
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
+
+	public int getSumPrice() {
+		return sumPrice;
+	}
+
+	public void setSumPrice(int sumPrice) {
+		this.sumPrice = sumPrice;
+	}
 	
 	
 	

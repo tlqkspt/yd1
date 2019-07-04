@@ -4,6 +4,7 @@ public class Product {
 	private String name;
 	private String model;
 	private int values;
+	private int qty;
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
@@ -43,6 +44,14 @@ public class Product {
 
 	public void setValues(int values) {
 		this.values = values;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
 	}
 	
 	
