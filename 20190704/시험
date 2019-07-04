@@ -1,0 +1,116 @@
+전자기기 판매점
+tv
+에어컨
+
+
+
+
+
+
+
+물건 구매하면 영수증 출력
+
+
+
+
+
+
+
+select * from yd_prod_txn;
+
+select * from yd_product;
+
+select * from onhand_view;
+
+select product_code, sum(txn_qty) onhand_qty
+					from yd_prod_txn
+					group by product_code;
+          
+create table yedam_prod_onhand(
+product_code varchar2(10),
+onhand_qty number);
+
+select * from yedam_prod_onhand;
+
+create table puechase_info(
+  purchase_no varchar2(10),
+  product_code varchar2(10),
+  txn_qty number);
+
+alter table puechase_info rename to purchase_info;
+
+commit;
+select * from purchase_info;
+select MAX(purchase_no) from purchase_info;  -- 그컬럼의 최대값을 가져와서 다음번호로쓴다 빈값이면 null 
+
+insert into purchase_info values(1,'3',3);
+
+desc purchase_info;
+
+create sequence qtylist_no
+  start with 1
+  increment by 1;
+
+
+select * from yedam_prod_onhand;
+
+select * from yd_prod_txn;  ---
+
+select * from yd_product; 
+
+select * from purchase_info;
+
+delete from yedam_prod_onhand;
+delete from yd_prod_txn;
+delete from yd_product;
+delete from purchase_info;
+
+select  receipt_purchase_no(p_purchase_no = 1);
+
+select ;
+
+{call receipt_purchase_no(2)};  -----------왜 sql에선 안됨?
+
+
+select product_code, txn_qty, receipt_issue_date from yd_prod_txn;
+
+rollback;
+commit;
+
+
+-------------------------------------
+--로그파일 전송
+
+create table chat_log (
+        id varchar2(20) primary key,
+        chat varchar2(200),
+        chat_date varchar2(30));
+        
+select * from chat_log;
+
+
+create table prod_list (
+          model varchar2(20) primary key,
+          name varchar2(20),
+          price number);
+          
+          
+ create table cart (
+          num number primary key,
+          prod_code varchar2(20),
+          price number);
+      
+truncate table cart;
+      commit;
+select * from cart;
+
+insert into cart values('1',2);
+
+select * from prod_list;
+
+
+
+insert into prod_list values('tv2','60인치tv',3500000);
+insert into prod_list values('phone2','갤럭시s',800000);
+insert into prod_list values('com2','고사양',1600000);
+ 
