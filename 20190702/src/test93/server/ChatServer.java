@@ -23,7 +23,7 @@ public class ChatServer {
 		try {
 			ServerSocket s_socket = new ServerSocket(8888);
 
-			logtest.save("\r\n"+"===== 서버시작 ======"); // 서버 로그 저장 //로그저장테스트 수정
+			logtest.save("\r\n"+"#서버시작#"); // 서버 로그 저장 //로그저장테스트 수정
 			
 			while (true) {
 			
