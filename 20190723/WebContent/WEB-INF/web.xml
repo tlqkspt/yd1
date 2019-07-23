@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>20190723</display-name>
+  
+  <servlet> <!-- 서블릿정의 -->
+     <servlet-name>hello</servlet-name>  <!--서블릿 이름 hello로  -->
+     <servlet-class>co.kdw.control.firstServlet</servlet-class>   <!-- 정확한 클래스명 -->
+  </servlet>
+  
+  <servlet-mapping>   <!-- 1대1매핑  -->
+  	 <servlet-name>hello</servlet-name>
+   	 <url-pattern>/h.do</url-pattern>      <!-- 클래스를 매핑할 임의의 이름을 입력. 주의! '/'  로 시작해야된다 -->
+  </servlet-mapping>
+  
+  <servlet> 
+     <servlet-name>second</servlet-name>
+     <servlet-class>co.kdw.control.secondServlet</servlet-class>
+     <init-param>
+         <param-name>id</param-name>
+         <param-value>abcde</param-value>
+     </init-param>
+     
+     <init-param>
+         <param-name>pw</param-name>
+         <param-value>12345</param-value> 
+     </init-param>
+     
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>second</servlet-name>
+     <url-pattern>/b.do</url-pattern>
+  </servlet-mapping>
+  
+  <context-param>
+     <param-name>userName</param-name>
+     <param-value>홍길동</param-value>
+  </context-param>
+  
+  <context-param>
+     <param-name>userId</param-name>
+     <param-value>ID1234</param-value>
+  </context-param>
+  
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
