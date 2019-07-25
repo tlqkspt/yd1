@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form 객체의 메소드</title>
+<h2>Form 객체의 메소드 익히기</h2>
+<script language="JavaScript">
+	function sf() {
+		document.f1.submit();
+		alert("전송이 완료되었습니다.");
+	}
+	function rf() {
+		document.f1.reset();
+		alert("초기화 되었습니다. 다시 입력바랍니다.");
+	}
+</script>
+</head>
+<body>
+	<form name="f1">
+		이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름: <input type="text"><br>
+		주민번호: <input type="text" name="n2">
+		<p>
+			<input type="submit" name="b1" value="서버로 전송" onClick="sf()">
+			<input type="button" name="b2" value="초기화 버튼" onClick="rf()">
+	</form>
+</body>
+</html>

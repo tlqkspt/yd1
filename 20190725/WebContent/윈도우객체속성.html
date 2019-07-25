@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>윈도우 객체의 속성</title>
+<h2>윈도우 객체의 속성 익히기</h2>
+<script language="JavaScript">
+document.write("윈도우가 종료되었으면 TRUE로 표시됨 : ");
+document.write(window.closed + "<br>");
+document.write("현재 윈도우에 포함되어 있는 자식 프레인의 수 : ");
+document.write(window.length + "<br>");
+window.name = "오렌지" //윈도우의 이름을 오렌지로 지정함
+document.write("현재 윈도우의 이름 : ");
+document.write(window.name + "<br>");
+document.write("현재 윈도우의 이름 : ");
+document.write(self.name + "<br>");
+document.write("document 객체에 대한 참조 : ");
+document.write(self.document + "<br>");
+document.write("history 객체에 대한 참조 : ");
+document.write(self.history + "<br>");
+document.write("상위 객체에 대한 참조 : ");
+document.write(self.parent + "<br>");
+document.write("프레임들에 대한 참조 : ");
+document.write(self.frames + "<br>");
+document.write("location 객체에 대한 참조 : ");
+document.write(self.location + "<br>");
+</script></head></body></html>

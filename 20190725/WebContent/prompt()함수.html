@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>prompt 함수</title>
+</head>
+<body>
+	<h2> prompt() 함수의 사용 예제</h2>
+	<script>
+		rvalue = prompt("남자는 1, 여자는 2라고 입력하세요","가나다라");
+		if(rvalue == "1") {
+			document.write("남자네.<br>");
+		} else if(rvalue == "2") {
+			document.write("여자네.<br>");
+		} else
+			document.write("잘못입력했다.");
+		sum = rvalue + 800;
+		document.write("<p>" + sum + "<p>");
+	</script>
+prompt 는 ("","") 스트링
+</body>
+</html>

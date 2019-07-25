@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Array 객체의 메소드</title>
+<h2>Array 객체의 메소드 익히기</h2>
+</head><body>
+<script language="JavaScript">
+k1 = new Array("A", "B", "C", "D");
+k2 = new Array("D", "F", "E", "A");
+k4 = k1.slice(0, 2); //"A", "B"가 k4 배열 요소로 저장됨
+k5 = k1.slice(0, -1);
+document.write("k1 배열 : " + k1 + "<br>");
+document.write("k4 배열 : " + k4 + "<br>");
+document.write("k5 배열 : " + k5 + "<p>");
+k6 = k2.sort( );
+document.write("k2 배열 : " + k2 + "<br>");
+document.write("k6 배열 : " + k6 + "<p>");
+k7 = k2.toString( );
+document.write("k2 배열 : " + k2 + "<br>");
+document.write("k7 배열 : " + k7 + "<p>");
+</script></body></html>

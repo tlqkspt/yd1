@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var dateB;
+		var dateN = new Date();
+		
+		function run(birth){
+//			var arrN = dateN.split('-');
+//			var arrB = birth.split('-');
+			
+//			var dateB = new(arrN[0],arrN[1],arrN[2]);
+//		    var dateN = new(arrB[0],arrB[1],arrB[2]);		
+//			return count;
+		//	birth = new Date("2019-07-22");
+			var diff = dateN - new Date(birth);
+			var currDay = 24 * 60 * 60 * 1000;
+			
+			return parseInt(diff/currDay);
+		//	return birth
+		}
+		
+		function getR(){
+			var dateB = document.getElementById("birth").value;
+			var result = run(dateB);
+			document.getElementById("life").innerHTML = "당신은 태어나서부터"+result+"일 경과해서 지금은 "+ parseInt(result/365)+"살입니다.";
+			
+		}
+		
+	</script>
+	
+	<h1>내가 살아온 인생 계산하기</h1>
+	
+	생년월일 입력 :<input type="text" id="birth" value="0000-00-00"><br><br>
+	<input type="button" value="나이 계산" onclick="getR()"><br>
+	<p id = "life">당신은 태어나서부터 ???일 경과해서 지금은 ???살입니다.
+</body>
+</html>

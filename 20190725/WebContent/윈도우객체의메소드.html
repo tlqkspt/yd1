@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>윈도우 객체의 메소드</title>
+<h2>moveBy( ) 메소드 익히기</h2>
+<script language="JavaScript">
+	function win_making() {
+		wo = window.open("first.htm", "nw", "toolbar=yes,width=300,height=200");
+		if (wo != null) { //정상적으로 윈도우가 만들어졌는지 확인하는 부분
+			wo.document.write("이 윈도우는 지금 새로 만든 윈도우입니다.");
+			for (i = 1; i <= 100; i++)
+				wo.moveBy(2, 2);
+			for (i = 1; i <= 100; i++)
+				wo.moveBy(-2, -2);
+		}
+	}
+	//윈도우가 정상적으로 만들어지면 wo에는 새로 만들어진
+	//윈도우 객체가 반환된다. 그렇지 않으면 wo에는 null 값이 저장된다.
+	function win_close() {
+		if (wo != null)
+			wo.close();
+	}
+</script>
+</head>
+<body>
+	<form>
+		<input type="button" value="윈도우 생성" onClick="win_making( )"> <input
+			type="button" value="윈도우 닫기" onClick="win_close( )">
+	</form>
+</body>

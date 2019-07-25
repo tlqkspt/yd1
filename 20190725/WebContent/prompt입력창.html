@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		idValue = prompt("ID 를 입력 하세요.");
+		pwValue = prompt("비밀번호를 입력 하세요.");
+
+		if ((idValue == "std01" && pwValue == "1111") || 
+				(idValue == "std02"&& pwValue == "2222") || 
+				(idValue == "std03" && pwValue == "3333")) {
+			location.href="prompt_login.html";
+			
+		} else {
+			location.href="prompt_error.html"
+		}
+	</script>
+
+</body>
+</html>

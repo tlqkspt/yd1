@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 메소드의 정의와 사용 방법 </title>
+<script language = "javascript">
+<!--
+//생성자 함수에 등록될 메소드 정의 시작
+function phone_print() {
+document.write("phone제조회사 : " + this.company + "<br>");
+document.write("phone의 가격 : " + this.cost + "<br>");
+document.write("phone의 유형 : " + this.type + "<br>");
+}//메소드 정의 끝
+//생성자 함수의 정의 시작
+function phone(company, cost, type) {
+this.company = company;
+this.cost = cost;
+this.type = type;
+this.phone_print = phone_print; //메소드 phone_print의 등록
+}//생성자 함수의 정의 끝
+//자바스크립트의 끝 -->
+</script> </head>
+<body>
+<h1> 객체를 위한 메소드의 정의, 등록, 호출 </h1><p>
+<script language = "javascript">
+phone1 = new phone("LG", 50, "mobile"); //phone1 객체 생성
+phone2 = new phone("SS", 50, "mobile"); //phone2 객체 생성
+//객체의 속성 값을 인쇄하기
+document.write("<h2>phone1</h2><p>");
+phone1.phone_print(); //메소드 phone_print의 호출
+document.write("<p><p>");
+document.write("<h2>phone2</h2><p>");
+phone2.phone_print(); //메소드 phone_print의 호출
+</script> </body>
+</html>

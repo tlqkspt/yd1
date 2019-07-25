@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체의 정의와 생성 및 참조</title>
+<script language="javascript">
+	//생성자 함수의 정의 시작
+	function phone(company, cost, type) {
+		this.company = company;
+		this.cost = cost;
+		this.type = type;
+	}//생성자 함수의 정의 끝
+</script>
+</head>
+<body>
+	<h1>객체의 생성 및 속성 값 참조</h1>
+	<p>
+		<script language="javascript">
+			phone1 = new phone("LG", 50, "mobile"); //phone1 객체 생성
+			phone2 = new phone("SS", 50, "mobile"); //phone2 객체 생성
+			//생성된 객체의 속성 값 읽어내기("." 연산자 사용)
+			document.write("<h2>phone1</h2><p>");
+			document
+					.write(" phone1의 제작사(company) : " + phone1.company + "<br>");
+			document.write(" phone1의 가격(cost) : " + phone1.cost + "<br>");
+			document.write(" phone1의 유형(type) : " + phone1.type + "<br>");
+			document.write("<p><p>");
+			document.write("<h2>phone2</h2><p>");
+			document
+					.write(" phone2의 제작사(company) : " + phone2.company + "<br>");
+			document.write(" phone2의 가격(cost) : " + phone2.cost + "<br>");
+			document.write(" phone2의 유형(type) : " + phone2.type + "<br>");
+			//객체의 속성 값 변경하기
+			phone1.cost = 62;
+			phone2.cost = 70;
+			//phone1, 2의 변경된 속성 값 읽어내기
+			document.write("<p><p>");
+			document.write("<h2> 객체의 변경된 속성 값 읽어내기 </h2><p>");
+			document.write(" phone1의 가격(cost) : " + phone1.cost + "<br>");
+			document.write(" phone2의 가격(cost) : " + phone2.cost + "<br>");
+		</script>
+</body>
+</html>
