@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function loginCheck(){
+		var id = document.frm.id;
+		
+	}
+</script>
+</head>
+<body>
+	<form align="center" name="frm" id="frm" action="loginOk.jsp" method="post">
+		<table align="center">
+			<tr>
+				<th>아이디</th>
+				<td><input type="text" name="id">
+			</tr>
+			<tr>
+				<th>비밀번호</th>
+				<td><input type="password" name="pw">
+			</tr>
+		</table>
+		
+		<input type="submit" value="로그인">
+		<input type="hidden" id="loginCheck" name="loginCheck" value="fail">
+		<input type="button" value="회원가입" onclick="location.href='join.html'"> 
+	</form>
+</body>
+</html>

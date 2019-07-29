@@ -17,7 +17,7 @@
 			<td> <input type="text" name="inputValue"> </td>   
 		</tr>
 	</table><p>
-	<input type="submit" value="등록">
+	<input type="submit" value="삭제">
 
 </form>
 </body>

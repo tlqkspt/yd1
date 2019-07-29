@@ -32,7 +32,7 @@
 	String name = request.getParameter("name");
 	String tel = request.getParameter("tel");
 	String addr = request.getParameter("addr");
-	sql = "insert into member values(?,?,?,?,'산업공학')";
+	sql = "insert into member00 values(?,?,?,?,'산업공학')";
 	
 	try {
 		Class.forName(driver);

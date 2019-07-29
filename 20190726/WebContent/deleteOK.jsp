@@ -21,14 +21,14 @@
 	String user = "kdw";
 	String password = "1234";
 	String sql;
-	int n;
+	int n=0;
 %>
 
 <%
 	request.setCharacterEncoding("utf-8");
-	String val = request.getParameter("val");
+	String val = request.getParameter("inputValue");
 	String sel = request.getParameter("select");
-	sql = "delete from member where "+sel+"= " + id;
+	sql = "delete from member00 where "+sel+"= " + val;
 	
 	try{
 		Class.forName(driver);
@@ -42,6 +42,8 @@
 	if(n != 0) {
 		response.sendRedirect("list.jsp");
 	} else {
+		out.print(val);
+		out.print(sel);
 		out.print("삭제 실패!!<p>");
 	}
 %>

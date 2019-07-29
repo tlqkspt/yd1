@@ -24,7 +24,7 @@
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "kdw";
 	String password = "1234";
-	String sql = "select * from member";
+	String sql = "select * from member00";
 	ArrayList<Student> list;
 	
 %>
