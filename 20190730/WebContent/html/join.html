@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입화면</title>
+<script>
+	
+	function formCheck() {
+		
+		var name = document.frm.name;
+		if (name.value == '') {
+			alert("성명을 입력하세요.");
+			name.focus(); //입력커서 그쪽으로 보냄
+			return false; //리턴시키면 submit이 취소되는거
+		}
+
+		var id = document.frm.id;
+		if (id.value == '') {
+			alert("아이디를 입력하세요.");
+			id.focus();
+			return false;
+		}
+		
+		var chkId = document.frm.chk;
+		if (chkId.value != "idChk") {
+			alert("아이디 중복 체크를 하세요");
+			return false;
+		}
+
+		var pw = document.frm.password;
+		if (pw.value == '') {
+			alert("비밀번호 입력하세요");
+			pw.focus();
+			return false;
+		}
+
+		var birth = document.frm.birth;
+		if (birth.value == '') {
+			alert("생년월일을 입력하세요.");
+			birth.focus();
+			return false;
+		}
+		
+		document.frm.submit(); //버튼쓴경우  <input type="button" value="회원가입" onclick="formCheck();"> 버튼말고 submit 쓰면 이거없어도됨
+	}
+	</script>
+	<script>
+	function openIdChk(){
+		var cid = document.frm.id;
+		if(cid.value == ''){
+			alert("아이디 값을 입력하세요");
+			cid.focus();
+			return false;
+		}
+		url = "../IdChk?id="+ cid.value;			//id체크 서블릿에서동작						//수정할거임
+		open(url, "chkForm","location=no, width=500, height=300, resizable=no, scrollbars=no")		///수정하럭
+	}
+	</script>
+</head>
+<body>
+	<div align="center">
+		<h3>회원가입</h3>
+		<form id="frm" name="frm" action="../JoinOk" method="post" >  <!--  서블릿기반으로간다(action - joinOk) -->
+			<table border="1">
+				<tr>
+					<th align="center">성&nbsp;&nbsp;&nbsp;명</th>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<th align="center">아이디</th>
+					<td><input type="text" name="id" size=10> <!--   onkeydown="inputIdChk()"  ???-->
+						<input type="button" value="중복확인" onclick="openIdChk(this.form)">  <!-- openidchk() 실행 -->
+						<input type="hidden" id="chk" name="chk" value="idUnChk">	
+					</td>
+				</tr>
+				<tr>
+					<th align="center">비밀번호</th>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<th align="center">생년월일</th>
+					<td><input type="date" name="birth"></td>
+				</tr>
+				<tr>
+					<th align="center">주 소</th>
+					<td><input type="text" name="addr" size="50"></td>
+				</tr>
+			</table>
+			<p>
+				&nbsp;&nbsp;&nbsp;<input type="button" value="회원가입" onclick="formCheck();">&nbsp;&nbsp;&nbsp;&nbsp; <!-- button 말고 submit하면 입력됨 왜 버튼안안됨? -->
+				<input type="reset" value="취소">
+		</form>
+	</div>
+</body>
+</html>

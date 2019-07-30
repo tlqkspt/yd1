@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<script>
+	function login(){
+		
+		var id = document.frm.id;
+		if(id.value == ''){
+			alert("아이디를 입력하세요");
+			return false;
+		}
+		
+		var password = document.frm.password;
+		if(password.value == ''){
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+		document.frm.submit();
+	}
+</script>
+
+</head>
+<body>
+	<div align="center">
+		<form id="frm" name="frm" action="../LoginOk" method="post">
+			<h2>로그인</h2>
+			<table>
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" name="id"></td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="password"></td>
+				</tr>
+			</table>
+			<input type="button" onclick="login()" value="로그인">
+			<button type="button" onclick="location.href='../index.html'">홈으로</button>
+
+		</form>
+	</div>
+</body>
+</html>
