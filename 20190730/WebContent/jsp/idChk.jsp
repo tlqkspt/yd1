@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	function FormClose(n){
 		if(n == 1) {
-			opener.document.frm.chk.value = "idChk";	
+			opener.document.frm.chk.value = "idChk";
 		} else {
 			opener.document.frm.id.value ='';	//중복아이디면 id 입력칸을 빈칸으로 만듬
 		}

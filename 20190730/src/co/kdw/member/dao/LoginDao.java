@@ -16,7 +16,7 @@ public class LoginDao {
 	private Connection conn;
 	private PreparedStatement psmt;
 	private ResultSet rs;
-	String loginId;
+	String loginName;
 	
 	public LoginDao() {
 		try {
@@ -28,7 +28,7 @@ public class LoginDao {
 	}
 	
 	public String select(String id, String pw) {
-		String sql = "select memberid from member where memberid = ? and password =?";
+		String sql = "select membername from member where memberid = ? and password =?";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -38,13 +38,13 @@ public class LoginDao {
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
-				loginId = rs.getString("memberid");
+				loginName = rs.getString("membername");
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return loginId;
+		return loginName;
 	}
 	
 	public void close() {

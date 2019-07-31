@@ -1,6 +1,7 @@
 package co.kdw.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,19 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.kdw.member.dao.LoginDao;
+import co.kdw.member.dao.JoinDao;
+import co.kdw.member.dto.MemberDto;
 
 /**
- * Servlet implementation class LoginOk
+ * Servlet implementation class MemberList
  */
-@WebServlet("/LoginOk")
-public class LoginOk extends HttpServlet {
+@WebServlet("/MemberList")
+public class MemberList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginOk() {
+    public MemberList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,18 +44,15 @@ public class LoginOk extends HttpServlet {
 		doAction(request, response);
 	}
 
-	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("password");
-		String loginName;
+	public void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		////// 여기 입력
+		JoinDao dao = new JoinDao();
+		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
 		
-		LoginDao dao = new LoginDao();
-		
-		loginName = dao.select(id, pw);
+		list = dao.select();
 		dao.close();
-		
-		request.setAttribute("loginName", loginName);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/loginOk.jsp");
+		request.setAttribute("list", list);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/memberlist.jsp");
 		dispatcher.forward(request, response);
 		
 	}

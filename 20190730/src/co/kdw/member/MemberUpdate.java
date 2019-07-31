@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.kdw.member.dao.LoginDao;
+import co.kdw.member.dao.JoinDao;
+import co.kdw.member.dto.MemberDto;
 
 /**
- * Servlet implementation class LoginOk
+ * Servlet implementation class MemberUpdate
  */
-@WebServlet("/LoginOk")
-public class LoginOk extends HttpServlet {
+@WebServlet("/MemberUpdate")
+public class MemberUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginOk() {
+    public MemberUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,30 +31,31 @@ public class LoginOk extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doAction(request, response);
+		doAction(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doAction(request, response);
+		doAction(request,response);
 	}
 
-	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("password");
-		String loginName;
+	public void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		JoinDao dao = new JoinDao();
+		MemberDto dto = new MemberDto();
+		request.setCharacterEncoding("utf-8");
+		int n = 0;
+		dto.setMemberId(request.getParameter("id"));		//memberedit.jsp 에서온값
+		dto.setMemberPassword(request.getParameter("password"));
+		dto.setMemberName(request.getParameter("name"));
+		dto.setMemberAddr(request.getParameter("addr"));
+		dto.setMemberBirth(request.getParameter("birth"));
 		
-		LoginDao dao = new LoginDao();
+		n = dao.update(dto);
 		
-		loginName = dao.select(id, pw);
-		dao.close();
-		
-		request.setAttribute("loginName", loginName);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/loginOk.jsp");
+		request.setAttribute("n", n);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/updateOk.jsp");
 		dispatcher.forward(request, response);
 		
 	}

@@ -23,6 +23,12 @@
 
 </head>
 <body>
+<%
+	String id = session.getAttribute("id");
+	if(id != null){ %>
+		<%= session.getAttribute("name") %> 이미 로그인 된 계정입니다.
+	<% } else { 
+%>
 	<div align="center">
 		<form id="frm" name="frm" action="../LoginOk" method="post">
 			<h2>로그인</h2>
@@ -41,5 +47,6 @@
 
 		</form>
 	</div>
+	<% } %>
 </body>
 </html>

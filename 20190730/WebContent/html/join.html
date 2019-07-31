@@ -55,11 +55,16 @@
 		url = "../IdChk?id="+ cid.value;			//id체크 서블릿에서동작						//수정할거임
 		open(url, "chkForm","location=no, width=500, height=300, resizable=no, scrollbars=no")		///수정하럭
 	}
+	
+	function id2chk(){
+		document.frm.chk.value = "idUnChk"
+	}
 	</script>
 </head>
 <body>
 	<div align="center">
-		<h3>회원가입</h3>
+		<h3><button type="button" onclick="location.href='../index.html'" style="float:right">홈으로</button>회원가입</h3>
+		
 		<form id="frm" name="frm" action="../JoinOk" method="post" >  <!--  서블릿기반으로간다(action - joinOk) -->
 			<table border="1">
 				<tr>
@@ -68,9 +73,9 @@
 				</tr>
 				<tr>
 					<th align="center">아이디</th>
-					<td><input type="text" name="id" size=10> <!--   onkeydown="inputIdChk()"  ???-->
+					<td><input type="text" name="id" size=10 onfocus="id2chk()"> <!--   onkeydown="inputIdChk()"  ???-->
 						<input type="button" value="중복확인" onclick="openIdChk(this.form)">  <!-- openidchk() 실행 -->
-						<input type="hidden" id="chk" name="chk" value="idUnChk">	
+						<input type="hidden" id="chk" name="chk" value="idUnChk">
 					</td>
 				</tr>
 				<tr>
