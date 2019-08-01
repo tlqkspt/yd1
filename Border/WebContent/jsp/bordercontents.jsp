@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div align="center">
+		<div><jsp:include page="topmenu.jsp"></jsp:include></div>
+		<div>
+			<p>
+		</div>
+		<div align="center">
+			<div><h3>글 내용 보기</h3><p></p></div>
+			<table border="1">
+				<tr>
+					<td width="100" align="center">글 번 호</td>
+					<td width="640">${dto.bNo }</td>
+				</tr>
+				<tr>
+					<td align="center">작 성 자</td>
+					<td>${dto.writer }</td>
+				</tr>
+				<tr>
+					<td align="center">제&nbsp;&nbsp;&nbsp;&nbsp;목</td>
+					<td>${dto.subject }</td>
+				</tr>
+				<tr>
+					<td align="center">내&nbsp;&nbsp;&nbsp;&nbsp;용</td>
+					<td>${dto.contents }</td>
+				</tr>
+				<tr>
+					<td align="center">작성일자</td>
+					<td>${dto.wdate }</td>
+				</tr>
+				<tr>
+					<td align="center">조 회 수</td>
+					<td>${dto.hit }</td>
+				</tr>
+			</table>
+			<div><p></div>
+			<div><button type="button" onclick="location.href='BorderList.do'">목록</button></div>
+		</div>
+	</div>
+</body>
+</html>
