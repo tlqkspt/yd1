@@ -34,8 +34,8 @@ public class BorderDao {
 
 	public ArrayList<BorderDto> select() { // 게시판 전체 목록을 가져오는것
 		ArrayList<BorderDto> list = new ArrayList<BorderDto>();
-		SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd");
-		String sql = "select bno, writer, subject, wdate, hit from border";
+		SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		String sql = "select bno, writer, subject, wdate, hit from border order by bno";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -44,7 +44,7 @@ public class BorderDao {
 				dto.setbNo(rs.getInt(1));
 				dto.setWriter(rs.getNString(2));
 				dto.setSubject(rs.getString(3));
-				dto.setWdate(fdate.format(rs.getDate(4)));
+				dto.setWdate(fdate.format(rs.getTimestamp(4)));
 				dto.setHit(rs.getInt(5));
 				list.add(dto);
 			}
@@ -74,7 +74,7 @@ public class BorderDao {
 		return n;
 	}
 
-	public int delete(int bNo) {
+	public int delete(int bNo) {		//게시글 삭제
 		int n = 0;
 		String sql = "delete from border where bno = ?";
 		try {
@@ -90,6 +90,30 @@ public class BorderDao {
 		return n;
 	}
 	
+	public BorderDto editSerch(int id) {	//수정을 위한select
+		SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd");
+		String sql ="select * from border where bno = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto = new BorderDto();
+				dto.setbNo(rs.getInt("bno"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContents(rs.getString("contents"));
+				dto.setWdate(fdate.format(rs.getDate("wdate")));
+				dto.setHit(rs.getInt("hit"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return dto;
+	}
+	
 	public BorderDto serch(int bNo) {					//한놈만 가져옴
 		SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String sql ="select * from border where bno = ?";
@@ -103,7 +127,9 @@ public class BorderDao {
 				dto.setWriter(rs.getString("writer"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setContents(rs.getString("contents"));
-				dto.setWdate(fdate.format(rs.getDate("wdate")));
+				dto.setWdate(fdate.format(rs.getTimestamp("wdate")));		
+				///rs.getDate("wdate") 2019-08-02 ->> rs.getTimestamp("wdate") 2019-08-02 14:50:33.0  버전?차이
+				//System.out.println(rs.getTimestamp("wdate"));
 				dto.setHit(rs.getInt("hit"));
 				hitUpdate(bNo);	//글읽으면 조회수 증가		// 여기넣으면 로드가 많이걸린다??????
 			}
@@ -114,8 +140,27 @@ public class BorderDao {
 		}
 		return dto;
 	}
-
-	public void hitUpdate(int bNo) {
+	
+	public int update(BorderDto dto) {			//글내용 수정
+		int n = 0;
+		String sql = "update border set contents = ?, hit = 0 where bno = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getContents());
+			psmt.setInt(2, dto.getbNo());
+			psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return n;
+	}
+	
+	
+	
+	public void hitUpdate(int bNo) {		//조회수 1증가시키는 매서드
 		String sql="update border set hit = hit + 1 where bno = ?";
 		try {
 			psmt = conn.prepareStatement(sql);

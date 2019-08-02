@@ -151,7 +151,7 @@
 
       
       
-      <Context docBase="20190730" path="/20190730" reloadable="true" source="org.eclipse.jst.jee.server:20190730"/><Context docBase="ElExam" path="/ElExam" reloadable="true" source="org.eclipse.jst.jee.server:ElExam"/><Context docBase="Border" path="/Border" reloadable="true" source="org.eclipse.jst.jee.server:Border"/><Context docBase="ControlTest" path="/ControlTest" reloadable="true" source="org.eclipse.jst.jee.server:ControlTest"/></Host>
+      <Context docBase="Border" path="/Border" reloadable="true" source="org.eclipse.jst.jee.server:Border"/></Host>
     </Engine>
   </Service>
 </Server>

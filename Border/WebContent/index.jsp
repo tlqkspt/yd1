@@ -7,12 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div align="center">
-	<jsp:include page="jsp/topmenu.jsp"></jsp:include>
-	<div><p></div>
-	<div>
-		여기다 글쓰시오
-	</div>
-</div>
+	<jsp:forward page="jsp/main.jsp"></jsp:forward>
 </body>
 </html>

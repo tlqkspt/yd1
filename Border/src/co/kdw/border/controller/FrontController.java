@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import BorderContents.BorderContents;
+import co.kdw.border.command.BorderDelete;
+import co.kdw.border.command.BorderEdit;
+import co.kdw.border.command.BorderEditWrite;
 import co.kdw.border.command.BorderInsert;
 import co.kdw.border.command.BorderList;
 import co.kdw.border.common.Command;
@@ -56,19 +59,35 @@ public class FrontController extends HttpServlet {
 			command = new BorderList();		//service 인터페이스 통해서 BorderList 객체를 생성
 			command.excute(request, response); //실행
 			viewPage = "jsp/borderlist.jsp";
-		} else if(req.equals("/BorderContents.do")) {
+		} else if(req.equals("/BorderContents.do")) {	///게시글보기
 			command = new BorderContents();
 			command.excute(request, response);
 			viewPage = "jsp/bordercontents.jsp";
-		} else if(req.contentEquals("/BorderInsert.do")) {
-			command = new BorderInsert();		//작업해야함
-			command.excute(request, response);
+		} else if(req.contentEquals("/Writer.do")) {		//글쓰기페이지이동
 			viewPage = "jsp/borderinsert.jsp";
+//		} else if(req.contentEquals("/TopMenu.do")) {		///???????????????????????????????
+//			viewPage = "jsp/topmenu.jsp";
+		} else if(req.contentEquals("/BorderInsert.do")) {	//글쓰기
+			command = new BorderInsert();
+			command.excute(request, response);
+			viewPage = "/BorderList.do";
+		} else if(req.contentEquals("/BorderEdit.do")) {
+			command = new BorderEdit();			//글 수정
+			command.excute(request, response);
+			viewPage = "jsp/borderedit.jsp";
+		} else if(req.contentEquals("/BorderDelete.do")) {
+			command = new BorderDelete();	//글삭제
+			command.excute(request, response);
+			viewPage = "/BorderList.do";
+		} else if(req.contentEquals("/BorderEditWrite.do")) {
+			command = new BorderEditWrite();
+			command.excute(request, response);
+			viewPage = "/BorderContents.do";
 		}
 			// else if(req.equals()) {
 		
 			//처리할 다른거 생기면 여기에 계속해서 추가한다
-//		}   else if() ...
+//		}   else if(...) ...
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
