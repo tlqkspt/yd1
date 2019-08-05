@@ -1,8 +1,10 @@
 package co.kdw.border.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,15 +25,16 @@ import co.kdw.border.common.Command;
 @WebServlet("/FrontController")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private HashMap<String, Command> map = null;    
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public FrontController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -67,7 +70,7 @@ public class FrontController extends HttpServlet {
 			viewPage = "jsp/borderinsert.jsp";
 //		} else if(req.contentEquals("/TopMenu.do")) {		///???????????????????????????????
 //			viewPage = "jsp/topmenu.jsp";
-		} else if(req.contentEquals("/BorderInsert.do")) {	//글쓰기
+		} else if(req.contentEquals("/BorderInsert.do")) {	//글쓰기저장
 			command = new BorderInsert();
 			command.excute(request, response);
 			viewPage = "/BorderList.do";
@@ -93,6 +96,6 @@ public class FrontController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 }

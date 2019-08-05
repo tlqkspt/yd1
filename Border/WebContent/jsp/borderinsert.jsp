@@ -22,7 +22,7 @@
 	<div><h3>글 쓰기</h3></div>
 	<div><p></div>
 	<div>
-		<form id="frm" name="frm" action="BorderInsert.do" method="post">
+		<form id="frm" name="frm" action="BorderInsert.do" method="post" enctype="multipart/form-data">
 			<div><table border="1">
 				<tr>
 					<td align="center">작 성 자</td>
@@ -35,6 +35,10 @@
 				<tr>
 					<td align="center">내&nbsp;&nbsp;&nbsp;&nbsp;용</td>
 					<td><textarea id="contents" name="contents" rows="10" cols="100"></textarea></td>
+				</tr>
+				<tr>
+					<td align="center">첨부파일</td>
+					<td witdh="640"><input type="file" id="file" name="file"></td>
 				</tr>
 				</table></div>
 				<div><p></div>

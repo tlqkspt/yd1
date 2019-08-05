@@ -28,7 +28,7 @@
 				</tr>
 				<tr>
 					<td align="center">제&nbsp;&nbsp;&nbsp;&nbsp;목</td>
-					<td>${dto.subject }</td>
+					<td><input type="text" value = "${dto.subject }"></td>
 				</tr>
 				<tr>
 					<td align="center">내&nbsp;&nbsp;&nbsp;&nbsp;용</td>

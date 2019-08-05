@@ -7,16 +7,18 @@ public class BorderDto {
 	private String contents;
 	private String wdate;
 	private int hit;
+	private String fileName;
 	
 	public BorderDto() {
 		
 	}
 	
 	//인서트용 생성자
-	public BorderDto(String writer, String subject, String contents) {
+	public BorderDto(String writer, String subject, String contents, String file) {
 		this.writer = writer;
 		this.subject = subject;
 		this.contents = contents;
+		this.fileName = file;
 	}
 
 	public int getbNo() {
@@ -65,6 +67,14 @@ public class BorderDto {
 
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	
 	

@@ -51,6 +51,10 @@
 					<td>${dto.wdate }</td>
 				</tr>
 				<tr>
+					<td align="center">첨부파일</td>
+					<td><a href= "fileupload/${dto.fileName }">${dto.fileName }</a></td>
+				</tr>
+				<tr>
 					<td align="center">조 회 수</td>
 					<td>${dto.hit }</td>
 				</tr>

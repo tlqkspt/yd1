@@ -24,8 +24,9 @@
 				<tr align="center">
 					<td width="50"><button type="button" onclick="BorderList.do">글번호</button></td>  <!--  <td width="50">글번호</td>  -->
 					<td width="100">작성자</td>
-					<td width="200">제 목</td>
+					<td width="250">제 목</td>
 					<td width="100">작성일자</td>
+					<td width="150">첨부파일</td>
 					<td width="50">조회수</td>
 				</tr>
 				<c:forEach items="${list }" var="dto">
@@ -39,6 +40,7 @@
 							<td>${dto.writer }</td>
 							<td>${dto.subject }</td>
 							<td>${dto.wdate }</td>
+							<td>${dto.fileName }</td>
 							<td>${dto.hit }</td>
 						</tr>
 					</c:if>
