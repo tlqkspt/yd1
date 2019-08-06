@@ -6,22 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+	<div><jsp:include page="topmenu.jsp"></jsp:include></div>
 	<div align="center">
-		<jsp:include page="topmenu.jsp"></jsp:include>
-		<c:if test="${sid != null }">
-			<div><p></div>
-			<div>
-				<h3> ${name}님의 My Page 환영.</h3>
-			</div>
-		</c:if>
+		<div>
+		<p>
+		</div>
 		<c:if test="${sid == null }">
-			<div><p></div>
-			<div>
-				<h3>모두의페이지.</h3>
-			</div>
+			${name }로그인부터 하십쇼
+		</c:if>
+		<c:if test = "${sid != null}">
+			${name }님 잘가요
+			<%session.invalidate(); %>
+			<%//session.removeAttribute("name");%>
+			<%//session.removeAttribute("sid"); %>
 		</c:if>
 	</div>
 </body>

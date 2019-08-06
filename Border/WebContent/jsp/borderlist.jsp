@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div align="center">
-		<div><jsp:include page="/jsp/topmenu.jsp"></jsp:include></div>
+		<div><jsp:include page="topmenu.jsp"></jsp:include></div>
 		<div>
 			<p>
 		</div>
@@ -48,7 +48,9 @@
 			</table></form></div>
 			<div><p></div>
 			<div>
-				<button type="button" onclick="location.href='Writer.do'">글쓰기</button> 
+				<c:if test="${name != null }">
+					<button type="button" onclick="location.href='Writer.do'">글쓰기</button>
+				</c:if>	 
 			</div>
 		</div>
 	</div>

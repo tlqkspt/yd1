@@ -26,17 +26,19 @@
 				<td>생년월일</td>
 			</tr>
 			<c:forEach items="${list }" var="dto">
-				<tr align="center" onmouseover="this.style.background='#bbbbbb'" onmouseout="this.style.background='white'"
-					onclick="formSubmit(${dto.id })">
-					<td>${dto.id }</td>
-					<td>${dto.pw }</td>
-					<td>${dto.name }</td>
-					<td>${dto.addr }</td>
-					<td>${dto.birth }</td>
-				</tr>
 				<c:if test="${dto.id == null }">
-				등록된 글이 없습니다.
-			</c:if>
+					등록된 글이 없습니다.
+				</c:if>
+				<c:if test="${dto.id != null }">
+					<tr align="center" onmouseover="this.style.background='#bbbbbb'" onmouseout="this.style.background='white'"
+						onclick="formSubmit(${dto.id })">
+						<td>${dto.id }</td>
+						<td>${dto.pw }</td>
+						<td>${dto.name }</td>
+						<td>${dto.addr }</td>
+						<td>${dto.birth }</td>
+					</tr>
+				</c:if>
 			</c:forEach>
 		</table>
 		</form>

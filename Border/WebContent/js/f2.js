@@ -1,5 +1,5 @@
-function formSubmit(id) {
+function formSubmit(String) {
 	var form = document.frm;
-	form.id.value = id;
+	form.id.value = String;
 	form.submit();
 }

@@ -113,6 +113,20 @@ public class MemberDao {
 		return n;
 	}
 	
+	public int memberSerch(String id) {		//멤버수정위한 조회
+		int n =0;
+		String sql = "select * from member where id=?";
+		try {
+			psmt=conn.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return n;
+	}
+	
+	
 	private void close() {
 		try {
 			if (rs != null)
@@ -125,5 +139,27 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 
+	}
+
+	public MemberDto select(String id, String pw) {		//로그인위한 select 
+		dto = new MemberDto();
+		dto.setId(null);		//null 값 안넣으면 로그인 잘못했을때 500번에러남(java.lang.NullPointerException)
+		dto.setName(null);		//
+		String sql = "select memberid, membername from member where memberid = ? and password=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto.setId(rs.getString(1));
+				dto.setName(rs.getString(2));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return dto;
 	}
 }

@@ -26,7 +26,7 @@
 			<div><table border="1">
 				<tr>
 					<td align="center">작 성 자</td>
-					<td><input type="text" id="writer" name="writer"></td>
+					<td><input type="text" id="writer" name="writer" value="${name }" readonly></td>
 				</tr>
 				<tr>
 					<td align="center">제&nbsp;&nbsp;&nbsp;&nbsp;목</td>

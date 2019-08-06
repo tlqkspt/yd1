@@ -42,6 +42,7 @@ public class FController extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		map = new HashMap<String, Command>();
+		map.put("/Index.do", new IndexDo());	//인덱스간다
     	map.put("/BorderList.do", new BorderList());
     	map.put("/BorderContents.do", new BorderContents());
     	map.put("/Writer.do", new WriterComm()); 	//command 만들어야함
@@ -54,7 +55,9 @@ public class FController extends HttpServlet {
     	map.put("/MemberInForm.do", new MemberInForm());//회원가입페이지
     	map.put("/MemberUpdate.do", new MemberUpdate());//회원정보수정
     	map.put("/MemberUpdateForm.do", new MemberUpdateForm()); //회원정보수정페이지
-    	
+    	map.put("/LoginForm.do", new LoginForm());	//로그인화면
+    	map.put("/Login.do", new Login());	//로그인실행
+    	map.put("/LogOut.do", new LogOut());	//로그아웃
 	}
 
 	/**

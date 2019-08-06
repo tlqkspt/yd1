@@ -125,6 +125,7 @@ public class BorderDao {
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				dto = new BorderDto();
+				
 				dto.setbNo(rs.getInt("bno"));
 				dto.setWriter(rs.getString("writer"));
 				dto.setSubject(rs.getString("subject"));
