@@ -48,7 +48,7 @@ public class MemberDao {
 				dto.setPw(rs.getString("password"));
 				dto.setName(rs.getString("membername"));
 				dto.setAddr(rs.getString("memberaddr"));
-				dto.setBirth(fdate.format(rs.getDate("memberbirthday")));
+				dto.setBirth(fdate.format(rs.getDate("memberregday")));
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -113,17 +113,26 @@ public class MemberDao {
 		return n;
 	}
 	
-	public int memberSerch(String id) {		//멤버수정위한 조회
-		int n =0;
-		String sql = "select * from member where id=?";
+	public MemberDto memberSerch(String id) {		//멤버수정위한 조회
+		//dto = new MemberDto();
+		String sql = "select * from member where memberid=?";
+		SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			psmt=conn.prepareStatement(sql);
-			
+			psmt.setString(1, id);
+			rs= psmt.executeQuery();
+			if(rs.next()) {
+				dto = new MemberDto();
+				dto.setId(rs.getString("memberid"));
+				dto.setPw(rs.getString("password"));
+				dto.setName(rs.getString("membername"));
+				dto.setAddr(rs.getString("memberaddr"));
+				dto.setBirth(fdate.format(rs.getDate("memberregday")));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		return n;
+		return dto;
 	}
 	
 	

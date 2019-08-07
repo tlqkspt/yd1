@@ -16,11 +16,11 @@
 	<div align="center">
 		<h3>회원목록</h3>
 		<form name="frm" id="frm" action="MemberUpdateForm.do" method="post">
-					<input type="hidden" name="id">
+					<input type="hidden" name="id" value="rootadmin">
 		<table border="1">
 			<tr>
 				<td>아이디</td>
-				<td>비밀번호</td>
+				<!-- <td>비밀번호</td>  -->
 				<td>이름</td>
 				<td>주소</td>
 				<td>생년월일</td>
@@ -31,9 +31,10 @@
 				</c:if>
 				<c:if test="${dto.id != null }">
 					<tr align="center" onmouseover="this.style.background='#bbbbbb'" onmouseout="this.style.background='white'"
-						onclick="formSubmit(${dto.id })">
+						onclick="formSubmit('${dto.id }')">		
+						<!-- borderlist와 다르게 formsubmit('el표현식') ''안넣어줬더니 숫자아이디 외에는 클릭이안됨 -->
 						<td>${dto.id }</td>
-						<td>${dto.pw }</td>
+						<!-- dto.pw 비밀번호 삭제함 -->
 						<td>${dto.name }</td>
 						<td>${dto.addr }</td>
 						<td>${dto.birth }</td>
