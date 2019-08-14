@@ -60,13 +60,14 @@ public class BorderDao {
 
 	public int insert(BorderDto dto) { // border테이블에 입력
 		int n = 0;
-		String sql = "insert into border(bno, writer, subject, contents, filename) values(border_seq.nextval, ?,?,?,?)";
+		String sql = "insert into border(bno, writer, subject, contents, filename,userid) values(board_seq.nextval, ?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getWriter());
 			psmt.setString(2, dto.getSubject());
 			psmt.setString(3, dto.getContents());
 			psmt.setString(4, dto.getFileName());		//나중에 리스트볼때도 추가되게
+			psmt.setString(5, dto.getUserId());
 			n = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,6 +188,27 @@ public class BorderDao {
 			e.printStackTrace();
 		}
 
+	}
+
+	public int getCount() {			// 20190814 곽동우 /페이징 할때 게시글 수 카운트
+		String sql="select count(*) as bcount from border";
+		int bcount = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				bcount = rs.getInt("bcount");
+				System.out.println(bcount);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return bcount;
+	}
+
+	public int getCount(String kwd) {	// 20190814 곽동우 /페이징 할때 게시글 수 카운트 (키워드로 검색했을때)
+			
+		return 0;
 	}
 
 }

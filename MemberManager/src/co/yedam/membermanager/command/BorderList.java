@@ -19,7 +19,7 @@ public class BorderList implements Command {
 		BorderDao dao = new BorderDao();
 		ArrayList<BorderDto> list = new ArrayList<BorderDto>();
 		list = dao.select();
-		request.setAttribute("list", list);
+
 		String viewPage = "jsp/borderlist.jsp";
 		
 		HttpRes.forword(request, response, viewPage);

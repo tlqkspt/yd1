@@ -10,7 +10,7 @@
 </head>
 <%
 	String name= (String) session.getAttribute("name");	//세션 정보 얻기
-	String id= (String) session.getAttribute("id");	//세션 정보 얻기
+	String sid= (String) session.getAttribute("sid");	//세션 정보 얻기
 %>
 <body>
 <div align="center">

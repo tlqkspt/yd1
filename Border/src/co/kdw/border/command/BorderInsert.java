@@ -35,6 +35,8 @@ public class BorderInsert implements Command {
 			dto.setWriter(multi.getParameter("writer"));		//파일업로드때문에 멀티로 수정
 			dto.setSubject(multi.getParameter("subject"));
 			dto.setContents(multi.getParameter("contents"));
+			dto.setUserId(multi.getParameter("sid"));
+			System.out.println(multi.getParameter("sid")+"sid  ???");
 			dto.setFileName(oriFile);
 			int n = dao.insert(dto);
 			request.setAttribute("n", n);

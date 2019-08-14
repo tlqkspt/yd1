@@ -151,7 +151,7 @@
 
       
       
-      <Context docBase="Border" path="/Border" reloadable="true" source="org.eclipse.jst.jee.server:Border"/><Context docBase="MemberManager" path="/MemberManager" reloadable="true" source="org.eclipse.jst.jee.server:MemberManager"/></Host>
+      <Context docBase="Project2" path="/Project2" reloadable="true" source="org.eclipse.jst.jee.server:Project2"/><Context docBase="Border" path="/Border" reloadable="true" source="org.eclipse.jst.jee.server:Border"/></Host>
     </Engine>
   </Service>
 </Server>
