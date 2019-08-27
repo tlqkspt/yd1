@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head lang='kr'>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=Edge' />
+    <title>1.1 [Bar Chart] basic</title>
+    <link rel='stylesheet' type='text/css' href='../dist/tui-chart.css' />
+    <link rel='stylesheet' type='text/css'
+        href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.css' />
+    <link rel='stylesheet' type='text/css'
+        href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/addon/lint/lint.css' />
+    <link rel='stylesheet' type='text/css'
+        href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/theme/neo.css' />
+    <link rel='stylesheet' type='text/css' href='./css/example.css' />
+</head>
+
+<body>
+    <div class='wrap'>
+        <div class='code-html' id='code-html'>
+            <div id='chart-area'></div>
+        </div>
+
+        <div class='custom-area'>
+            <div id='error-dim'>
+                <span id='error-text'></span>
+                <div id='error-stack'></div>
+                <span id='go-to-dev-tool'>For more detail, open browser's developer tool and check it out.</span>
+            </div>
+        </div>
+    </div>
+
+    <!--Import chart.js and dependencies-->
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js'></script>
+    <script type='text/javascript'
+        src='https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.min.js'></script>
+    <script type='text/javascript' src='https://uicdn.toast.com/tui.chart/latest/raphael.js'></script>
+    <script src='../dist/tui-chart.js'></script>
+    <script class='code-js' id='code-js'>
+        var budgetData = [];
+        var incomeData = [];
+        var categoryData = [];
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var datas = JSON.parse(this.responseText);
+                console.log(datas);
+
+                datas.forEach(function (v, i, a) {
+                    budgetData.push(v.salary);
+                    incomeData.push(v.salary / 3);
+                    categoryData.push(v.firstName);
+                })
+                //////////////////////////////
+                var container = document.getElementById('chart-area');
+                var data = {
+                    categories: categoryData, //['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
+                    series: [
+                        {
+                            name: 'Budget',
+                            data: budgetData //[5000, 3000, 5000, 7000, 6000, 4000]
+                        },
+                        {
+                            name: 'Income',
+                            data: incomeData //[8000, 1000, 7000, 2000, 5000, 3000]
+                        }
+                    ]
+                };
+                var options = {
+                    chart: {
+                        width: 1160,
+                        height: 650,
+                        title: 'Monthly Revenue',
+                        format: '1,000'
+                    },
+                    yAxis: {
+                        title: 'Month'
+                    },
+                    xAxis: {
+                        title: 'Amount',
+                        min: 0,
+                        max: 15000,
+                        suffix: '$'
+                    },
+                    series: {
+                        showLabel: true
+                    }
+                };
+                var theme = {
+                    series: {
+                        colors: ['yellow', 'green',
+                            '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd',
+                            '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399'
+                        ]
+                    }
+                };
+                // For apply theme
+
+                tui.chart.registerTheme('myTheme', theme);
+                options.theme = 'myTheme';
+
+                tui.chart.barChart(container, data, options);
+                //////////////////////////////
+            };
+        }
+
+        xhttp.open("GET", "../../empList.jsp?action=select", true);
+        //xhttp.open("GET", "http://localhost/ajaxTextb/BoardServ?action=list", true);
+        xhttp.send();
+
+
+
+    </script>
+
+</body>
+
+</html>
