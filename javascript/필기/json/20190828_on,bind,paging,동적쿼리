@@ -1,0 +1,78 @@
+
+제이쿼리
+.on()    ***** 중요
+.bind()
+
+
+<input type="button" onclick="doProcess()"/>    onclick에 저런거 넣지말고
+
+
+
+////
+btn1.onclick
+<input type="button" id="btn1">
+
+
+이벤트하나에 핸들러하나 밖에 안되는문제?
+
+////
+하나의 타겟에 여러게 이벤트? 등록가능
+btn1.addEventListener("click", "doProcess", false);
+btn1.addEventListener("click", "doProcess2", false);
+
+
+//////
+jquery 책 p.279
+
+예제 ( javascript/WebContent/event/eventPropagation.jsp  )	
+Outline (DOM객체)
+캡쳐링단계  
+버블링	  최상위노드에서 타겟 찾아가는거? 이벤트전파???	
+
+부모태그에 똑같은 태그가걸려있으면 부모태그이벤트도실행
+
+이벤트전파막기?
+event.stopPropagation();
+
+기본이벤트전파중지
+a 태그막을수있다?
+
+
+///////////////////
+이벤트흐름
+
+jquery 이벤트 메소드
+mouseover mouseout		>> 합친게 hover
+보다
+mouseenter mouseleave
+
+on off
+on 이벤트생성?
+off 이벤트제거
+
+
+unbind
+모두제거 특정이벤트제거 가능
+
+
+	///// paging
+
+태그파일은 WEB-INF/tags 폴더 안에 넣어야함--
+
+J S     T    L	.jar
+  표준  tag
+
+자주쓰는  걸 태그로 만들어 쓰는거
+
+커스텀태그 만들어쓸수도있다
+커스텀태그 불러쓰려면 제일상단에 <%@ taglib prefix="?" tagdir="??"   %>
+
+<%@ attribute name="name" required="true" %>  속성
+
+페이징~~~~~~~####### 
+deptlist.jsp
+java src 에 dept패키지 내용물
+paging.tag
+select.tag
+
+동적쿼리

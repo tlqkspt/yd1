@@ -1,0 +1,65 @@
+Javascript >>>>>>>>  JQuery
+    |       쓰기쉽게
+	|
+	|----동적처리
+	|       DOM: innerHTML
+	|             Document.getElementById
+	|             createElement
+	|
+	|
+	|---Ajax
+	|      XMLHttp Request(xhr)				>>>>>>>>>>>>>>>>>>     $.get(url, data, function)  여기서적어준 펑션은 정상실행됐을때만 실행
+						xhr.open("get",url,async)				   $.post(url, data ,function)
+						         "post"                                  
+																		위에꺼 발전?? $.ajax(url,option)
+						1. xhr = new ___()										$.getJSON(url,data,function) 요청 
+						   xht.open
+						   onready = function(					
+						   send(data)
+	
+	
+	
+	jquery.com
+	api
+	
+	
+	
+	complete = finally?
+	
+	
+	자바list 자바스크립 이해할수있는구조 json
+	일일이만들기힘듬 라이브러리쓰면 간편
+	
+<script>
+	$(function(){
+		$.getJSON("../DeptListServ",function(data){
+			var str="";
+			for(i=0; i<data.length; i++){
+				str += '<option value="'+data[i].departmentId+'">'
+						+ data[i].departmentName;
+			}
+			//$('[name="departmentId"]').html(str);   // 제이쿼리표현! //name 으로 찾는거 //아래랑같은표현임
+			document.getElementById("departmentId").innerHTML = str;	// 자바스크립트표현? //id찾는거임
+		});
+		
+		
+		//document.getElementById("departmentId")[0].onchange = function(){}	//js표현
+		$('[name="email"]').change( function(){			// jquery 표현
+			//ajax 요청
+			var email = $('[name="email"]').val();	//name 이 email인놈의 값가져옴
+			var param = {email : email};	//"email=" +email변환해서 줘도된다?
+			$.getJSON("../EmailCheck", param, function(data){	//비교할 email넘어가야함 param 에 태워서 보내줌
+				//$("#result").html(data.result);	//true면 사용불가 false면사용가능
+				if(data.result == "true"){
+					document.getElementById("result").innerHTML = "사용불가";	//js 표현
+					document.getElementById("result").style.color = "red";
+				} else{
+					$("#result").html("사용가능");		//jquery 표현
+					$("#result").css("color","blue");
+				}
+			})	
+		})	
+		
+		
+	});
+</script>

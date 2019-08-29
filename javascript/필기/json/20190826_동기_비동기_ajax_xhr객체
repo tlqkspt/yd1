@@ -1,0 +1,80 @@
+
+
+동기 비동기
+
+동기로 처리할경우가있다
+
+
+ajax쓰는이유
+AJAX is a developer's dream, because you can:
+
+Read data from a web server - after the page has loaded
+Update a web page without reloading the page
+Send data to a web server - in the background
+
+
+XMLHttpRequest
+xhr 객체생성
+.open(url, 비동기여부)	//요청준비
+.on(readystatechange = function(){}	//서버에서 응답이오면 실행?
+.send() //서버쪽으로 응답을 보냄	
+
+콜백함수가 뱉어냄
+상태
+0 xhr객체생성
+1 open()
+2 send()
+3 응답중	여기 로딩중.. 이미지?
+4 완료		
+
+Access Across Domains ??	// 서버쪽에서? 허용해줘야
+
+w3schools
+AJAX - The XMLHttpRequest Object	// AJAX XMLHttp
+
+
+동기 비동기 차이점
+비동기 
+(ajax 요청 후)console창 바로뜨고    
+화면에 텍스트출력됨
+
+///////
+get방식 post방식 다름
+
+get방식
+
+
+
+post방식
+
+Content-type: application/x-www-form-urlencoded
+FormData
+
+
+url길이
+
+
+postman
+
+http://json.org/
+
+json-simple-1.1.1.jar 파일
+라이브러리 3군데중 아무데나 넣음
+
+지금 페이지넘어가는구조 viewPage
+데이터만 넘겨준다 
+
+
+/////////////  jquery 쓰면 
+
+
+
+
+/////////////
+ajax  f12  network clear 원하는기능실행?  넘어가는 데이터 볼수있음
+
+소스분석능력 *
+
+
+
+

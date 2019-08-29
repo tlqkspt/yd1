@@ -1,0 +1,7 @@
+      up.do ?                ->   name=null
+			? name = ____    ->   name=""
+	        ? name = char    ->   char
+			
+			비교할때 
+			if(name != null && name.isEmpty())
+			

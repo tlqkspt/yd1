@@ -1,0 +1,158 @@
+		!!!!!!!!String <-> array
+		!!!!!!!!객체 <-> String
+
+1.초기엔 string !!잘라써야함
+
+2. xml로
+   확장가능한 마커 랭귀지          마커랭귀지????
+  <Emps>
+	<emp>
+		<name> tom </name>
+		<sal>4000</sal>
+	</emp>
+  </Emps>
+  
+  데이터만 들고올건데 사족이많다
+  그래서 json이 나옴
+  
+3.json 
+	배열표현 []
+	객체  	 {}
+   
+	위에꺼 json으로 바꾸면
+	[{name:"tom",sal:500}, { ~ },{ ~ },{ ~ }, { ~ }]
+	
+	js 에서 o 객체를 n 표현 하는방법
+	
+	
+	/////////////////////////
+	
+	w3school
+	Array      	/////  웹 콘솔창에서 console.log  typeof
+		1.join() 애들묶어서 하나의 스트링으로 바꿔줌!!!!!!!!!!!!!!!
+		2.push	제일 마지막 추가
+		3.pop	제일 마지막 원소 읽고 삭제		( 스택구조랑같음)
+		4.split  문자열 분리해서 배열에 넣음!!!!!!!!!!!!!!!
+		
+		5.shift 제일처음 원소 읽고 삭제
+		6.unshift 반대
+		
+		getby~~ 태그찾음
+		innerHTML 태그 내용변경
+		
+		
+		
+	자바 스크립트는 emp.firstName 이나 emp[firsttName] 이나 같은거로 인식함	
+	
+	
+	//서버에 넘길러면 object 면 안됨 string 으로 바꿔줘야함  		//parse    stringify
+	
+	var d = [ {name: 'choi', age:20 , hobby : ["독서","등산","산책" ] }
+		 ,{name: 'park', age:30 }
+		 ,{name: 'kim', age:10 }
+		]
+	
+	s = JSON.stringify(d);
+	"[{"name":"choi","age":20,"hobby":["독서","등산","산책"]},{"name":"park","age":30},{"name":"kim","age":10}]"
+	typeof s
+	"string"
+	
+	o = JSON.parse(s)
+	
+	(3) [{…}, {…}, {…}]
+	0: {name: "choi", age: 20, hobby: Array(3)}
+	1: {name: "park", age: 30}
+	2: {name: "kim", age: 10}
+	length: 3
+	__proto__: Array(0)
+	
+	
+	//////정렬
+	
+	
+	
+	
+	////foreach
+	
+	var txt = "";
+	var numbers = [45, 4, 9, 16, 25];
+	numbers.forEach(myFunction);
+
+	function myFunction(value, index, array) {
+	txt = txt + value + "<br>"; 
+	}
+	
+	
+			
+		var str = "";
+		
+		arr.forEach(f);
+		
+		function f(value,index){
+			str += "<img src='"+value+"'/>"
+		}
+		
+		document.getElementById("result").innerHTML = str;
+		
+		
+	let 블럭레벨추가됨
+	
+	
+		//전역변수
+	let g = 10;
+	
+	//블록변수
+	{
+		let g = 20;
+	}
+	
+	function sum(){
+		//지역변수
+		let d = 10;
+	}
+	
+	document.write(g);
+
+
+	const  상수??
+	
+	Array.forEach()
+	
+	Array.map()
+	
+	
+	
+	/////////////////////////////////
+	textarea 로 내용저장하면
+	엔터키 = \n 로 저장됨
+	\n >>>>>>>>>>>>> <br>태그로 바꿔줘야 html로읽을때 줄바꿈됨
+	
+	\n >>>>>>>>>>>>>>>>  <br>
+	function aaaa(){
+		var text = document.getElementById("content");
+		var result = text.value.replace(/(\n|\r\n)/g, '<br>');
+		document.getElementById("content").value = result
+	}
+	
+	
+	<br>   >>>>>>>>>>>  \n
+	function bbbb(){
+		var text = document.getElementById("content");
+		var result = text.value.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
+		document.getElementById("content").value = result
+	}
+	
+				<button type="button" onclick="aaaa()">태그</button>
+			<button type="button" onclick="bbbb()">ㅇㅇㅇ</button>
+			
+			
+			
+	//text창 엔터키 자동submit 막아줌
+	function captureReturnKey(e) {	
+	    if(e.keyCode==13 && e.srcElement.type != 'textarea')
+	    return false;
+	}
+	
+					onkeydown="return captureReturnKey(event)"
+	<form id="frm" name="frm" action="QnaWrite.do" onkeydown="return captureReturnKey(event)" method="post">
+			
